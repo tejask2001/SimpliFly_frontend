@@ -1,0 +1,181 @@
+.home-main{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    padding-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; 
+  }
+.home-left,.flight-search-container{
+    margin: 10px;
+    width: 46%;
+    height: 90%;
+}
+.booking-form-container{
+    margin: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 8px 8px 10px rgba(69, 67, 67, 0.5);
+}
+.logo-simplifly{
+    width: 40%;
+    height: auto;
+    margin: 20px;
+}
+.msg{
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+}
+
+.more-msg{
+    font-size: 30px;
+    font-weight: 400;
+    color: white;
+    text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
+}
+#one-way,#roundtrip{
+    margin: 10px;
+}
+.one-way,.roundtrip{
+    margin: 10px;
+}
+.departure-div,.arrival-div{
+    width: 46%;
+}
+#departure,#arrival{
+    width: 100%;
+}
+.date-div,.return-date-div{
+    margin: 10px;
+}
+
+.date-select{
+    width: 48%;
+}
+.source-destination-div{
+    display: flex;
+}
+.departure-div,.arrival-div{
+    margin: 10px;
+}
+.passenger-count-div{
+    margin: 10px;
+    width: 100%;
+    display: flex;
+}
+.adult-passenger,.child-passenger{
+    margin: 10px;
+}
+#childpassengerCount,#adultpassengerCount{
+    width: 80px;
+}
+.decr-btn,.incr-btn{
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 1px;
+    background-color: rgb(204, 207, 208);
+}
+.show-flight-btn{
+    background-color: #4fa3e3;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+}
+.show-flight-btn:hover{
+    background-color: #0c5a95;
+    color: rgb(243, 243, 243);
+}
+
+@media (max-width: 900px) {
+.home-main{
+    flex-direction: column;
+    height: 130vh;
+    padding-top: 20%;
+    justify-content: flex-start;
+}
+.home-left,.flight-search-container{
+    margin: 10px;
+    width: 90%;
+    height: 35%;
+}
+.msg{
+    font-size: 40px;
+    color: rgb(10, 55, 88);
+    text-shadow: 5px 5px 4px rgba(33, 46, 70, 0.5);
+}
+
+.more-msg{
+    font-size: 22px;
+}
+.booking-form-container{
+    margin: 10px;
+}
+.source-destination-div{
+    flex-direction: column;
+}
+.departure-div,.arrival-div,.date-select{
+    width: 90%;
+}
+.passenger-count-div{
+    flex-direction: column;
+}
+.adult-div,.child-div{
+    margin: 10px;
+}
+}
+
+@media (min-height: 900px) {
+    .home-main{
+        flex-direction: column;
+        height: 110vh;
+        padding-top: 20%;
+        justify-content: flex-start;
+    }
+    .home-left,.flight-search-container{
+        margin: 10px;
+        width: 90%;
+        height: 25%;
+    }
+    .msg{
+        font-size: 40px;
+        
+    }
+    
+    .more-msg{
+        font-size: 22px;
+    }
+    .booking-form-container{
+        margin: 10px;
+    }
+    .source-destination-div{
+        flex-direction: column;
+    }
+    .departure-div,.arrival-div,.date-select{
+        width: 90%;
+    }
+    .passenger-count-div{
+        flex-direction: column;
+    }
+    .adult-div,.child-div{
+        margin: 10px;
+    }
+    }

@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&family=Martel&display=swap');
+
+.bg-custom{
+    position:absolute
+}
+.navbar-nav{
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.airplane-icon{
+    height: 40px;
+    position: relative;
+    right: 28%;
+    top: 10px;
+}
+.navbar-brand,.nav-link{
+    color: white;
+    font-family: "Lobster", sans-serif;
+    text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36px;
+}
+.navbar-brand{
+    margin-left: 20px;
+}
+.navbar-brand:hover{
+    color: white;
+}
+.nav-link{
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Roboto Slab', serif;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 1.2);
+}
+.nav-link:hover{
+    color: rgb(180, 186, 188);
+}
+.link-btn{
+    display: none;
+}
+.nav-menu{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    display: none;
+    flex-direction: column;
+}
+.nav-menu-link{
+    width: 97%;
+    height: 10%;
+    margin :1.5%;
+    background-color: #4fa3e3;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 14px rgb(203, 196, 196);
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: bold;   
+}
+.back-img{
+    height: 40px;
+    width: 50px;
+}
+.back{
+    height: 12%;
+    justify-content: start;
+    text-decoration: underline;
+    background-color: white;
+    color: #4fa3e3;
+}
+.back:hover{
+    cursor: pointer;
+    color: rgb(24, 93, 242);
+}
+.simplifly-txt{
+    font-family: "Lobster", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36px;
+    color: #4fa3e3;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1000px) {
+    .nav-links {
+        display: none;
+    }
+    .link-btn{
+        display: block;
+    }
+}
