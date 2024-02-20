@@ -6,11 +6,14 @@ import GetRoute from './Components/GetRoute/GetRoute'
 import Footer from './Components/Footer/Footer'
 import Login from './Components/Login/Login'
 import RegisterFlightOwner from './Components/RegisterFlightOwner/RegisterFlightOwner'
+import ManageFlight from './Components/ManageFlight/ManageFlight'
+import ManageRoute from './Components/ManageRoute/ManageRoute'
+import ManageSchedule from './Components/ManageSchedule/ManageSchedule'
 
 export default function Homepage() {
   return (
     <div>
-      <RegisterFlightOwner/>
+      <ManageSchedule/>
     </div>
   )
 }

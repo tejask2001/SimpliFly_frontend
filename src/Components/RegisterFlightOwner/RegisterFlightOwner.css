@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: space-evenly;
 }
-form{
+.register-div form{
     background-color: rgb(206, 249, 255);
     height: 72%;
     width: 85%;
@@ -67,7 +67,7 @@ form{
 .btns{
     margin: 10px;
 }
-img{
+.username-div img,.password-div img,.re-enter-password-div img{
     height: 40px;
     width: 40px;
 }

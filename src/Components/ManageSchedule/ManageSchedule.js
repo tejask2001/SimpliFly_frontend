@@ -1,34 +1,33 @@
 import React from 'react'
-import './ManageFlight.css'
-import Navbar from '../Navbar/Navbar'
-import GetFlight from '../GetFlight/GetFlight'
+import './ManageSchedule.css'
+import GetSchedule from '../GetSchedule/GetSchedule'
 
-export default function ManageFlight() {
+export default function ManageSchedule() {
   return (
     <div>
       <div className="container-body">
         <div className="sidebar">
             <div className="sidebar-container">
             <div className="sidebar-options">
-                Add Flight
+                Add Schedule
             </div>
             <div className="sidebar-options">
-                Get Flights
+                Get Schedules
             </div>
             <div className="sidebar-options">
-                Update Flight
+                Update Schedule
             </div>
             <div className="sidebar-options">
-                Remove Flight
+                Remove Schedule
             </div>
         </div>
         </div>
         <div className="container-main">
-            <div className="add-flight">
+            <div className="add-schedule">
                 
             </div>
-            <div className="get-flight">
-                <GetFlight/>
+            <div className="get-schedule">
+                <GetSchedule/>
             </div>
             <div className="manage-schedule">
 

@@ -3,6 +3,7 @@ import './Login.css'
 import background from '../../Assets/Images/plane.jpg'
 import userImg from '../../Assets/Images/user.png'
 import key from '../../Assets/Images/key.png'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
 
@@ -49,7 +50,8 @@ export default function Login() {
             </div>
             <input type="submit" value="Login" id="login-btn" onClick={Login}/>
         </form>
-        <p className='register-text'>Don't have account,<span id='registerhere-text'> Register here</span></p>
+        <p className='register-text'>Don't have account,<span id='registerhere-text'>
+        <Link to="/register">Register here</Link></span></p>
     </div>
       </div>
     </div>

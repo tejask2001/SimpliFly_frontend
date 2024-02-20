@@ -3,6 +3,8 @@ import "./HomeComponent.css";
 import plane from "../../Assets/Images/plane.png";
 import PopularDestination from "../PopularDestination/PopularDestination";
 import { useState } from "react";
+import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
 
 export default function HomeComponent() {
   const [isRoundtrip, setIsRoundtrip] = useState(false);
@@ -130,6 +132,7 @@ export default function HomeComponent() {
         </div>
       </div>
       <PopularDestination/>
+      <Footer/>
     </div>
   );
 }

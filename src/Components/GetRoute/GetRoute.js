@@ -19,9 +19,9 @@ export default function GetRoute() {
         <button onClick={RouteData}>Getdata</button>
         {routes.map((route,index)=>
         <div key={index} className='route-list-div'>
-            <div>RouteId : {route.id}</div>
-            <div>Source Airport : {route.sourceAirport.name}</div>
-            <div>Destination Airport : {route.destinationAirport.name}</div>
+            <div><b>RouteId :</b> {route.id}</div>
+            <div><b>Source Airport :</b> {route.sourceAirport.name}, {route.sourceAirport.city}</div>
+            <div><b>Destination Airport :</b> {route.destinationAirport.name}, {route.destinationAirport.city}</div>
         </div>
         )}
     </div>
