@@ -63,7 +63,7 @@ export default function AddRoute() {
 
         <div className="destination-airport-div">
           <label htmlFor="destination-airport">
-            <b>Source Airport : </b>
+            <b>Destination Airport : </b>
           </label>
           <select
             className="select-destination-airport"

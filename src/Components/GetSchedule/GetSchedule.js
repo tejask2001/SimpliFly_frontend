@@ -22,7 +22,7 @@ export default function GetSchedule() {
   return (
     <div>
       <div className='schedule-div'>        
-        <button onClick={Schedules}>Getdata</button>
+        <button onClick={Schedules} className='get-schedule-btn'>Getdata</button>
         {schedules.map((schedule,index)=>
         <div key={index} className='schedule-list-div'>
           <div className='schedule-flight-detail'>

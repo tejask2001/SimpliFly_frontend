@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './ManageSchedule.css'
 import GetSchedule from '../GetSchedule/GetSchedule'
+import AddSchedule from '../AddSchedule/AddSchedule';
+import DeleteSchedule from '../DeleteSchedule/DeleteSchedule';
 
 export default function ManageSchedule() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -27,26 +29,26 @@ export default function ManageSchedule() {
                 Add Schedule
             </div>
             <div className="sidebar-options" onClick={()=>{
-              setAddSchedule(true);
-              setGetSchedule(false);
+              setAddSchedule(false);
+              setGetSchedule(true);
               setUpdateSchedule(false)
               setDeleteSchedule(false)
             }}>
                 Get Schedules
             </div>
             <div className="sidebar-options" onClick={()=>{
-              setAddSchedule(true);
+              setAddSchedule(false);
               setGetSchedule(false);
-              setUpdateSchedule(false)
+              setUpdateSchedule(true)
               setDeleteSchedule(false)
             }}>
                 Update Schedule
             </div>
             <div className="sidebar-options" onClick={()=>{
-              setAddSchedule(true);
+              setAddSchedule(false);
               setGetSchedule(false);
               setUpdateSchedule(false)
-              setDeleteSchedule(false)
+              setDeleteSchedule(true)
             }}>
                 Remove Schedule
             </div>
@@ -54,15 +56,18 @@ export default function ManageSchedule() {
         </div>}
         <div className="container-main">
         <div className='options-div' id='options-div'><u><h4 onClick={toggleSidebar}>options</h4></u></div>
-            <div className="add-schedule">
-                
-            </div>
-            <div className="get-schedule">
+            {addSchedule && <div className="add-schedule">
+                <AddSchedule/>
+            </div>}
+            {getSchedule && <div className="get-schedule">
                 <GetSchedule/>
-            </div>
-            <div className="manage-schedule">
+            </div>}
+            {updateSchedule && <div className="update-schedule">
 
-            </div>
+            </div>}
+            {deleteSchedule && <div className="delete-schedule">
+<DeleteSchedule/>
+            </div>}
         </div>
       </div>
     </div>
