@@ -41,8 +41,11 @@ export default function GetFlight() {
   };
 
   return (
-    <div>
-      <button onClick={flightData}>Getdata</button>
+    <div className="get-flight-div">
+      <div className="get-flight-options">
+        <button onClick={flightData} className="get-allflight-btn">Getdata</button>
+        
+      </div>
       {flights.map((flight, index) => (
         <div key={index} className="flight-list-div">
           <div className="flight-list">

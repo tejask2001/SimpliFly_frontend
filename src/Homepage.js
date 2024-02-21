@@ -9,11 +9,12 @@ import RegisterFlightOwner from './Components/RegisterFlightOwner/RegisterFlight
 import ManageFlight from './Components/ManageFlight/ManageFlight'
 import ManageRoute from './Components/ManageRoute/ManageRoute'
 import ManageSchedule from './Components/ManageSchedule/ManageSchedule'
+import FlightOwnerHome from './Components/FlightOwnerHome/FlightOwnerHome'
+import App from './App'
 
 export default function Homepage() {
   return (
     <div>
-      <ManageSchedule/>
     </div>
   )
 }

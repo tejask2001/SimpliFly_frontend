@@ -1,7 +1,9 @@
 import React from 'react'
 import './FlightOwnerHome.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function FlightOwnerHome() {
+  var navigate=useNavigate()
   return (
     <div>
       <div className="background-img" id="background-img">
@@ -10,19 +12,19 @@ export default function FlightOwnerHome() {
   </div>
   <div className="fun-div" id="fun-div">
     <div className="child-div">
-      <div className="owner-function">
+      <div className="owner-function" onClick={()=>navigate("/flightOwner/manageFlight")}>
         <img src="https://cdn-icons-png.flaticon.com/512/7893/7893979.png" className="fun-img"/>
         <h4>Manage Flights</h4>
       </div>
     </div>
     <div className="child-div">
-      <div className="owner-function">
-        <img src="https://cdn-icons-png.flaticon.com/512/25/25473.png" className="fun-img"/>
-        <h4>Manage Fares</h4>
+      <div className="owner-function" onClick={()=>navigate("/flightOwner/manageRoute")}>
+        <img src="https://cdn-icons-png.freepik.com/512/4283/4283136.png" className="fun-img"/>
+        <h4>Manage Route</h4>
       </div>
     </div>
     <div className="child-div">
-      <div className="owner-function">
+      <div className="owner-function" onClick={()=>navigate("/flightOwner/manageSchedule")}>
         <img src="https://cdn-icons-png.flaticon.com/512/3652/3652191.png" className="fun-img"/>
         <h4>Manage Schedules</h4>
       </div>

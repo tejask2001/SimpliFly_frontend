@@ -3,12 +3,13 @@ import './Login.css'
 import background from '../../Assets/Images/plane.jpg'
 import userImg from '../../Assets/Images/user.png'
 import key from '../../Assets/Images/key.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Login() {
-
+  const navigate=useNavigate()
   var [Username,setUsername]=useState()
   var [Password,setPassword]=useState()
+  var [userDetails,setUserDetails]=useState([])
   var user={}
   var Login=(e)=>{
       e.preventDefault();
@@ -16,6 +17,7 @@ export default function Login() {
       user.Password=Password
       user.role = "";
       user.token ="";
+      user.ownerId=""
       var requestOptions={
         method : 'POST',
         headers : {'Content-Type':'application/json'},
@@ -25,9 +27,31 @@ export default function Login() {
       fetch("http://localhost:5256/api/User/Login",requestOptions)
       .then(res=>res.json())
       .then(res=>{
-        sessionStorage.setItem("token",res.token);
-            sessionStorage.setItem("username",res.Username);
+            sessionStorage.setItem("token",res.token);
+            sessionStorage.setItem("username",res.username);
+            sessionStorage.setItem("role",res.role)
             alert("Login success - "+res.username);
+
+            if(sessionStorage.getItem("role")=='flightOwner'){
+
+              var getRequestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+              }
+          
+              const params = new URLSearchParams({
+                username: res.username
+              });
+          
+              fetch(`http://localhost:5256/api/FlightOwner?${params.toString()}`, getRequestOptions)
+                .then(response => response.json())
+                .then(response=>
+                  sessionStorage.setItem('ownerId',response.ownerId)
+                )
+                .catch(err => console.log(err));
+
+                    navigate("/flightOwner/home");
+            }
       })
       .catch(err=>{console.log(err)})
   }

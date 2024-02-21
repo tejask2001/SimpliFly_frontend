@@ -12,7 +12,7 @@
     width: 100%;
     object-fit: cover;
 }
-h1 {
+.background-img h1 {
     position: absolute;
     margin-left: 8%;
     font-size: 5em;
@@ -26,7 +26,7 @@ h1 {
     position: absolute;
     bottom: 0;
 }
-.child-div {
+.fun-div .child-div {
     flex: 1;
     height: 100%;
     display: flex;
@@ -35,7 +35,7 @@ h1 {
 }
 .owner-function:hover{
     cursor: pointer;
-    background-color: rgb(207, 224, 238);
+    background-color: rgb(166, 214, 254);
 }
 .owner-function{
     height: 90%;
@@ -58,7 +58,7 @@ h1 {
     h1{
         font-size: 30px;
     }
-    .background-img{
+    #background-img{
         height: 50vh;
     }
     .fun-div{
@@ -68,7 +68,7 @@ h1 {
         margin-left: auto;
         margin-right: auto;
     }
-    .child-div{
+    .fun-div .child-div{
         height: 50%;
         width: 100%;
     }

@@ -1,8 +1,9 @@
 import './Navbar.css'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 function Navbar(){
     var isLoggedIn=sessionStorage.getItem("token")
+    var navigate=useNavigate()
 
     function navMenu(){
         var navbar=document.getElementById("navbar-main")
@@ -45,26 +46,12 @@ function Navbar(){
               <a className="nav-link" href="#">Account</a>
             </li>)}
             </ul>
-            <button className="navbar-toggler link-btn" type="button" onClick={navMenu} id="menu-btn">
+            <button className="navbar-toggler link-btn" type="button" onClick={() => navigate('/navMenu')} id="menu-btn">
               <span className="navbar-toggler-icon"></span>
             </button>
             <Outlet/>
         </div>
       </nav>
-
-
-      <div className="nav-menu" id="nav-menu">
-        <div className="back nav-menu-link">
-          <div className="back-div" onClick={displayScreen}>
-          <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color/254000/38-512.png" className="back-img"/>Back
-        </div></div>
-        <div className="home nav-menu-link"><Link to="/home">Home</Link></div>
-
-        <div className="booking nav-menu-link"><Link to="/about">About</Link></div>
-        {!isLoggedIn && <div className="account nav-menu-link"><Link to="/login">Login</Link></div>}
-        {isLoggedIn && <div className="account nav-menu-link"><Link to="/account">Account</Link></div>}
-        <div className="simplifly-txt">Simplifly</div>
-      </div>
       </>
     );
 }

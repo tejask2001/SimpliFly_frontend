@@ -16,7 +16,7 @@ export default function GetRoute() {
 
   return (
     <div className='route-div'>
-        <button onClick={RouteData}>Getdata</button>
+        <button onClick={RouteData} className='get-route-btn'>Getdata</button>
         {routes.map((route,index)=>
         <div key={index} className='route-list-div'>
             <div><b>RouteId :</b> {route.id}</div>

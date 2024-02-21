@@ -39,7 +39,7 @@ export default function RegisterFlightOwner() {
     }
 
     fetch("http://localhost:5256/api/User/RegisterFlightOwner",RequestOption)
-      .then(res=>res.json)
+      .then(res=>res.json())
       .then(res=>{
         console.log(res)
         setRegisterMessage(true)

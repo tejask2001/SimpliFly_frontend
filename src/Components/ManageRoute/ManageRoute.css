@@ -40,12 +40,13 @@
     background-color:#9ad2fb;
 }
 .container-main{
+    margin-top: 5%;
     width: 75%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.get-routes{
+.get-routes,.add-routes,.delete-routes{
     width: 80%;
 }

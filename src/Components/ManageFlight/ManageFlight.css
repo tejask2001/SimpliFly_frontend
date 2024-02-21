@@ -40,12 +40,17 @@
     background-color:#9ad2fb;
 }
 .container-main{
+    margin-top: 19%;
     width: 75%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.get-flight{
+.get-flight,.add-flight,.update-flight,.delete-flight{
     width: 60%;
+}
+
+.update-flight{
+    height: 50%;
 }
