@@ -4,6 +4,7 @@ import './DeleteFlight.css'
 export default function DeleteFlight() {
 
     var [flightNumber,setFlightNumber]=useState();
+    
     var DeleteFlightFun=(e)=>{
         e.preventDefault()
         console.log(flightNumber)

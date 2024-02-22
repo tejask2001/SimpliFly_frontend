@@ -4,7 +4,7 @@
 
 .bg-custom{
     position:absolute;
-    
+    background-color: rgb(101, 198, 246);
 }
 .navbar-nav{
     width: 30%;

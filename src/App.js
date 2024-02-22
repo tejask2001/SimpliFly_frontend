@@ -12,6 +12,7 @@ import ManageFlight from './Components/ManageFlight/ManageFlight';
 import ManageRoute from './Components/ManageRoute/ManageRoute';
 import ManageSchedule from './Components/ManageSchedule/ManageSchedule';
 import NavMenu from './Components/Navbar/NavMenu';
+import SearchedFlightResult from './Components/SearchedFlightResult/SearchedFlightResult';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path='login' element={<Login />} />
       <Route path='register' element={<RegisterFlightOwner />} />
       <Route path='navMenu' element={<NavMenu/>}/>
+      <Route path='searchFlightResult' element={<SearchedFlightResult/>}/>
       <Route path='*' element={<Error />} />
     </Route>
     <Route path='/flightOwner/'>

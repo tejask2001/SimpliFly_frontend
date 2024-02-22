@@ -8,8 +8,10 @@ export default function DeleteSchedule() {
     var [dateScheduleDelete,setDateScheduleDelete]=useState(false)
 
     var [flightNumber,setFlightNumber]=useState();
-  var [airline,setAirline]=useState();
+  var [airport,setAirport]=useState();
   var [date,setDate]=useState();
+
+  var [airports, setAirports] = useState([]);
 
   var DeleteFligtSchedule=(e)=>{
 
@@ -17,6 +19,15 @@ export default function DeleteSchedule() {
   var DeleteDateSchedule=(e)=>{
 
   }
+
+  useState(() => {
+    fetch("http://localhost:5256/api/Route/GetAirports")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setAirports(res);
+      });
+  });
 
   return (
     <div className="delete-schedule-options-div">
@@ -48,6 +59,23 @@ export default function DeleteSchedule() {
                 <input type='date' value={date} onChange={(e)=>setDate(e.target.value)}
                 min={currentDateTime}/>
                 </div>
+
+                <div className="destination-airport-div">
+          <label htmlFor="destination-airport">
+            <b>Destination Airport : </b>
+          </label>
+          <select
+            className="select-destination-airport"
+            onChange={(e) => setAirport(e.target.value)}
+          >
+            <option value="0">--Select airport--</option>
+            {airports.map((airport) => (
+              <option key={airport.id} value={airport.id}>
+                {airport.city}
+              </option>
+            ))}
+          </select>
+        </div>
                     <button type='button' className='delete-date-schedule-btn' onClick={DeleteDateSchedule}>Delete Schedule</button>
                 </form>
             </div>}

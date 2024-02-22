@@ -1,4 +1,16 @@
 .about-div{
-    height: 100vh;
+    height: 130vh;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(158, 226, 253);
+}
+.description{
+    margin-top: 6%;
+    padding: 5%;
+    width: 80%;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 2px 2px 8px rgb(145, 143, 143);
 }

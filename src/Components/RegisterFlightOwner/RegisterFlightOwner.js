@@ -22,7 +22,8 @@ export default function RegisterFlightOwner() {
   var [businessRegistration,setBusinessRegistration]=useState("");  
 
   var flightOwner={}
-  var Register =()=>{
+  var Register =(e)=>{
+    e.preventDefault();
     flightOwner.username=username;
     flightOwner.password=password;
     flightOwner.name=name;

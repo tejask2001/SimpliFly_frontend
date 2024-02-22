@@ -60,7 +60,7 @@
 #departure,#arrival{
     width: 100%;
 }
-.date-div,.return-date-div{
+.depart-date-div,.return-date-div{
     margin: 10px;
 }
 
@@ -83,13 +83,6 @@
 }
 #childpassengerCount,#adultpassengerCount{
     width: 80px;
-}
-.decr-btn,.incr-btn{
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 1px;
-    background-color: rgb(204, 207, 208);
 }
 .show-flight-btn{
     background-color: #4fa3e3;

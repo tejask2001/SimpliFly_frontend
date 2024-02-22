@@ -5,19 +5,29 @@ import PopularDestination from "../PopularDestination/PopularDestination";
 import { useState } from "react";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 export default function HomeComponent() {
   const [isRoundtrip, setIsRoundtrip] = useState(false);
+  const currentDateTime = new Date().toISOString().split('T')[0];
+  var navigate=useNavigate()
     
   var[dateOfJourney,setDateOfJourney]= useState(new Date());
   var[Origin,setOrigin]=useState();
   var[Destination,setDestination]=useState();
+  var[adult,setAdult]=useState(1);
+  var[child,setChild]=useState(0);
+  var[searchFlightDetails,setSearchFlightDetails]=useState()
   var searchFlightDetails={}
+
+
   var searchFlight = (e) => {
     e.preventDefault();
     searchFlightDetails.dateOfJourney = dateOfJourney;
     searchFlightDetails.Origin = Origin;
     searchFlightDetails.Destination = Destination;
+    searchFlightDetails.adult=adult;
+    searchFlightDetails.child=child;
   
     var requestOptions = {
       method: 'GET',
@@ -32,11 +42,14 @@ export default function HomeComponent() {
 
     fetch(`http://localhost:5256/api/Flight/SearchFlight?${params.toString()}`, requestOptions)
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => {
+          console.log(res);
+          setSearchFlightDetails(res);
+        })
       .catch(err => console.log(err));
+      navigate('/searchFlightResult')
   }
   
-
     const handleFlightTypeChange = (e) => {
       setIsRoundtrip(e.target.id === 'roundtrip');
     };
@@ -101,10 +114,10 @@ export default function HomeComponent() {
                   />
                 </div>
               </div>
-              <div className="date-div">
+              <div className="depart-date-div">
                 <span className="departing-txt">Departure</span>
                 <input className="form-control date-select" type="date" value={dateOfJourney} 
-                onChange={(e)=>setDateOfJourney(e.target.value)} required />
+                onChange={(e)=>setDateOfJourney(e.target.value)} required min={currentDateTime}/>
               </div>
               {isRoundtrip && (
         <div className="return-date-div">
@@ -115,11 +128,11 @@ export default function HomeComponent() {
               <div className="passenger-count-div">
                 <div className='adult-div'>
                 <span className="adult-passenger">Adult (18+)</span>
-                  <input type="number" id="adultpassengerCount" name="passengerCount"  min="1" max="5"/>
+                  <input type="number" id="adultpassengerCount" value={adult} name="passengerCount"  min="1" max="5" onChange={(e)=>setAdult(e.target.value)}/>
                 </div>
                 <div className='child-div'>
                 <span className="child-passenger">Child(0-17)</span>
-                  <input type="number" id="childpassengerCount" name="passengerCount" min="0" max="5"/>
+                  <input type="number" id="childpassengerCount" value={child} name="passengerCount" min="0" max="5" onChange={(e) => setChild(e.target.value)} />
                 </div>
               </div>
               <div className="form-btn">
