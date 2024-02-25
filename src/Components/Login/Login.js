@@ -33,7 +33,6 @@ export default function Login() {
             alert("Login success - "+res.username);
 
             if(sessionStorage.getItem("role")=='flightOwner'){
-
               var getRequestOptions = {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
@@ -51,6 +50,25 @@ export default function Login() {
                 .catch(err => console.log(err));
 
                     navigate("/flightOwner/home");
+            }
+            else if(sessionStorage.getItem("role")=='customer'){
+              var getRequestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+              }
+          
+              const params = new URLSearchParams({
+                username: res.username
+              });
+          
+              fetch(`http://localhost:5256/users/GetCustomerByUsername?${params.toString()}`, getRequestOptions)
+                .then(response => response.json())
+                .then(response=>
+                  sessionStorage.setItem('ownerId',response.ownerId)
+                )
+                .catch(err => console.log(err));
+
+                    navigate(-2);
             }
       })
       .catch(err=>{console.log(err)})

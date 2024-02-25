@@ -12,13 +12,19 @@ export default function GetSchedule() {
       return { formattedDate, formattedTime };
     }
 
-    var Schedules = ()=>axios.get("http://localhost:5256/api/Schedule")
+    var Schedules = ()=>{
+      const token=sessionStorage.getItem('token')
+    const httpHeader={
+      headers:{'Authorization':'Bearer '+token}
+  }
+      axios.get("http://localhost:5256/api/Schedule",httpHeader)
                 .then(function(response){
                     setSchedules(response.data)
                 })
                 .catch(function(err){
                     console.log(err)
                 })
+              }
   return (
     <div>
       <div className='schedule-div'>        

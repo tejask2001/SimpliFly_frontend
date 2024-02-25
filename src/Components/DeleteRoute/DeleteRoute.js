@@ -12,9 +12,15 @@ export default function DeleteRoute() {
     routeDetail.sourceAirportId = parseInt(sourceAirport);
     routeDetail.destinationAirportId = parseInt(destinationAirport);
     console.log(routeDetail);
+
+    const token=sessionStorage.getItem('token')
+
     var RequestOption={
       method : 'DELETE',
-      headers : {'Content-type':'application/json'},
+      headers : {
+        'Content-type':'application/json',
+        'Authorization':'Bearer '+token
+      },
       body : JSON.stringify(routeDetail)
     }
     fetch("http://localhost:5256/api/Route",RequestOption)

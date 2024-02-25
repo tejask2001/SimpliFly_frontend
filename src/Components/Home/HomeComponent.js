@@ -6,17 +6,23 @@ import { useState } from "react";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
+import { addSearchFlight } from "../../SearchFlightSlice";
+import { addSearchFlightResult} from '../../SearchFlightResultSlice'
+import { useDispatch } from "react-redux";
+import SearchedFlightResult from "../SearchedFlightResult/SearchedFlightResult";
 
 export default function HomeComponent() {
   const [isRoundtrip, setIsRoundtrip] = useState(false);
   const currentDateTime = new Date().toISOString().split('T')[0];
   var navigate=useNavigate()
+  var dispatch = useDispatch();
     
   var[dateOfJourney,setDateOfJourney]= useState(new Date());
   var[Origin,setOrigin]=useState();
   var[Destination,setDestination]=useState();
-  var[adult,setAdult]=useState(1);
-  var[child,setChild]=useState(0);
+  var[Adult,setAdult]=useState(1);
+  var[Child,setChild]=useState(0);
+  var[SeatClass,setSeatClass]=useState('economy')
   var[searchFlightDetails,setSearchFlightDetails]=useState()
   var searchFlightDetails={}
 
@@ -26,9 +32,20 @@ export default function HomeComponent() {
     searchFlightDetails.dateOfJourney = dateOfJourney;
     searchFlightDetails.Origin = Origin;
     searchFlightDetails.Destination = Destination;
-    searchFlightDetails.adult=adult;
-    searchFlightDetails.child=child;
+    searchFlightDetails.Adult=Adult;
+    searchFlightDetails.Child=Child;
+    searchFlightDetails.SeatClass=SeatClass;
   
+    dispatch(addSearchFlight({
+      dateOfJourney:dateOfJourney,
+      Origin:Origin,
+      Destination:Destination,
+      Adult:Adult,
+      Child:Child,
+      SeatClass:SeatClass
+      }
+    ))
+
     var requestOptions = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -38,6 +55,9 @@ export default function HomeComponent() {
       dateOfJourney: searchFlightDetails.dateOfJourney,
       Origin: searchFlightDetails.Origin,
       Destination: searchFlightDetails.Destination,
+      Adult:searchFlightDetails.Adult,
+      Child:searchFlightDetails.Child,
+      SeatClass:searchFlightDetails.SeatClass
     });
 
     fetch(`http://localhost:5256/api/Flight/SearchFlight?${params.toString()}`, requestOptions)
@@ -45,8 +65,11 @@ export default function HomeComponent() {
       .then(res => {
           console.log(res);
           setSearchFlightDetails(res);
+          dispatch(addSearchFlightResult({ searchFlightResult: res }));
+
         })
       .catch(err => console.log(err));
+      
       navigate('/searchFlightResult')
   }
   
@@ -128,13 +151,18 @@ export default function HomeComponent() {
               <div className="passenger-count-div">
                 <div className='adult-div'>
                 <span className="adult-passenger">Adult (18+)</span>
-                  <input type="number" id="adultpassengerCount" value={adult} name="passengerCount"  min="1" max="5" onChange={(e)=>setAdult(e.target.value)}/>
+                  <input type="number" id="adultpassengerCount" value={Adult} name="passengerCount"  min="1" max="5" onChange={(e)=>setAdult(e.target.value)}/>
                 </div>
                 <div className='child-div'>
                 <span className="child-passenger">Child(0-17)</span>
-                  <input type="number" id="childpassengerCount" value={child} name="passengerCount" min="0" max="5" onChange={(e) => setChild(e.target.value)} />
+                  <input type="number" id="childpassengerCount" value={Child} name="passengerCount" min="0" max="5" onChange={(e) => setChild(e.target.value)} />
                 </div>
               </div>
+              <select className="seatClass" value={(e)=>setSeatClass(e.target.value)}>
+                  <option value='economy'>Economy</option>
+                  <option value='premiumEconomy'>Premium Economy</option>
+                  <option value='businessClass'>Business Class</option>
+                </select>
               <div className="form-btn">
                 <button className="submit-btn show-flight-btn" type="submit" onClick={searchFlight}>
                   Show flights

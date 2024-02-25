@@ -18,9 +18,13 @@ export default function UpdateFlight() {
         updateAirlineDetail.airline=airline;
         console.log(updateAirlineDetail)
 
+        const token=sessionStorage.getItem('token')
         var RequestOption={
             method : 'PUT',
-            headers : {'Content-Type':'application/json'},
+            headers : {
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            },
             body : JSON.stringify(updateAirlineDetail)
         }
 

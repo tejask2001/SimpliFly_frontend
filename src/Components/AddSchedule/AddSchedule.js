@@ -25,9 +25,14 @@ arrivalTime=new Date(arrivalTime).toISOString();
 addScheduleDetails.arrival=arrivalTime;
 console.log(addScheduleDetails);
 
+const token=sessionStorage.getItem('token')
+
 var requestOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization':'Bearer '+token 
+    },
   }
   const params = new URLSearchParams({
     SourceAirportId: parseInt(sourceAirport),

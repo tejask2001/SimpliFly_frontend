@@ -17,9 +17,15 @@ export default function AddFlight() {
     flightDetails.flightOwnerOwnerId=parseInt(sessionStorage.getItem('ownerId'))
     flightDetails.basePrice=parseFloat(basePrice);
     console.log(flightDetails)
+
+    const token=sessionStorage.getItem('token')
+    
     var RequestOption={
       method : 'POST',
-      headers : {'Content-type':'application/json'},
+      headers : {
+        'Content-type':'application/json',
+        'Authorization':'Bearer '+token
+      },
       body : JSON.stringify(flightDetails)
     }
     fetch("http://localhost:5256/api/Flight/AddFlight",RequestOption)

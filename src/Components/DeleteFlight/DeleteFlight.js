@@ -12,9 +12,14 @@ export default function DeleteFlight() {
         const params = new URLSearchParams({
             flightNumber: flightNumber,
           });
+        
+        const token=sessionStorage.getItem('token')
         var RequestOption={
             method : 'DELETE',
-            headers : {'Content-Type':'application/json'}
+            headers : {
+              'Content-Type':'application/json',
+              'Authorization':'Bearer '+token
+            }
         }
         fetch(`http://localhost:5256/api/Flight?${params.toString()}`,RequestOption)
             .then(res=>res.json())

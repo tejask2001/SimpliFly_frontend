@@ -15,9 +15,15 @@ export default function AddRoute() {
     routeDetail.destinationAirportId = parseInt(destinationAirport);
     routeDetail.distance = parseFloat(distance);
     console.log(routeDetail);
+
+    const token=sessionStorage.getItem('token')
+
     var RequestOption={
       method : 'POST',
-      headers : {'Content-type':'application/json'},
+      headers : {
+        'Content-type':'application/json',
+        'Authorization':'Bearer '+token
+      },
       body : JSON.stringify(routeDetail)
     }
     fetch("http://localhost:5256/api/Route/AddRoute",RequestOption)

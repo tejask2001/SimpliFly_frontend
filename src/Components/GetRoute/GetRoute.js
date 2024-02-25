@@ -6,13 +6,20 @@ export default function GetRoute() {
 
     var [routes,setRoutes]=useState([])
 
-    var RouteData = () => axios.get("http://localhost:5256/api/Route")
+    var RouteData = () => {
+      const token=sessionStorage.getItem('token')
+    const httpHeader={
+      headers:{'Authorization':'Bearer '+token}
+  }
+      axios.get("http://localhost:5256/api/Route",httpHeader)
                     .then(function(response){
                         setRoutes(response.data)
+                        console.log(response.data)
                     })
                     .catch(function (error) {
                         console.log(error);
-                      });
+                      })
+                    };
 
   return (
     <div className='route-div'>

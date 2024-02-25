@@ -15,16 +15,20 @@ export default function GetFlight() {
     },
   ]);
 
-  var flightData = () =>
+  var flightData = () =>{
+    const token=sessionStorage.getItem('token')
+    const httpHeader={
+      headers:{'Authorization':'Bearer '+token}
+  }
     axios
-      .get("http://localhost:5256/api/Flight")
+      .get("http://localhost:5256/api/Flight",httpHeader)
       .then(function (response) {
         setFlights(response.data);
         console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
-      });
+      })};
       
   const getAirlineImage = (airline) => {
     airline = airline.toLowerCase();

@@ -63,7 +63,10 @@
 .depart-date-div,.return-date-div{
     margin: 10px;
 }
-
+.adult-div,.child-div{
+    margin: 5px;
+    width: 50%;
+}
 .date-select{
     width: 48%;
 }
@@ -72,6 +75,9 @@
 }
 .departure-div,.arrival-div{
     margin: 10px;
+}
+.booking-form-container .passenger-count-div{
+    flex-direction: row;
 }
 .passenger-count-div{
     margin: 10px;
@@ -83,6 +89,9 @@
 }
 #childpassengerCount,#adultpassengerCount{
     width: 80px;
+}
+.seatClass{
+    margin: 15px;
 }
 .show-flight-btn{
     background-color: #4fa3e3;
