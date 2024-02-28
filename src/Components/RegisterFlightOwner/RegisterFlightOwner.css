@@ -56,7 +56,7 @@
     align-items: center;
     justify-content: space-around;
 }
-.name-div,.email-div,.company-div,.contact-div,.address-div,.registration-number-div,.btns{
+.name-div,.email-div,.company-div,.contact-div,.address-div,.registration-number-div,.btns,.position-div,.address-div{
     height: 15%;
     width: 95%;
     display: flex;

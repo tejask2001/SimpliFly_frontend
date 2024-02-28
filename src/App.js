@@ -15,6 +15,12 @@ import NavMenu from "./Components/Navbar/NavMenu";
 import SearchedFlightResult from "./Components/SearchedFlightResult/SearchedFlightResult";
 import PrivateRoute from '../src/Components/PrivateRoute/PrivateRoute'
 import BookingDetails from "./Components/BookingDetails/BookingDetails";
+import SeatLayout from "./Components/SeatLayout/SeatLayout";
+import AdminDashboard from "./Components/AdminDashboard/AdminDashboard";
+import ManageUser from "./Components/ManageUsers/ManageUser";
+import RegisterUser from "./Components/RegisterUser/RegisterUser";
+import RegisteredSuccessfully from "./Components/RegisteredSuccessfullyMsg/RegisteredSuccessfully";
+import RegisterAdmin from "./Components/RegisterAdmin/RegisterAdmin";
 
 function App() {
   return (
@@ -26,10 +32,13 @@ function App() {
           <Route path="home" element={<HomeComponent />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="login" element={<Login />} />
+          <Route path="registerUser" element={<RegisterUser/>}/>
+          <Route path="registerAdmin" element={<RegisterAdmin/>}/>
           <Route path="register" element={<RegisterFlightOwner />} />
           <Route path="navMenu" element={<NavMenu />} />
           <Route path="searchFlightResult" element={<SearchedFlightResult />} />
           <Route path="bookingDetails" element={<BookingDetails />} />
+          <Route path="seatBooking" element={<SeatLayout/>}/>
           <Route path="*" element={<Error />} />
         </Route>
         <Route path="/flightOwner/" element={<PrivateRoute />}>
@@ -38,6 +47,11 @@ function App() {
             <Route path="manageFlight" element={<ManageFlight />} />
             <Route path="manageRoute" element={<ManageRoute />} />
             <Route path="manageSchedule" element={<ManageSchedule />} />
+        </Route>
+        <Route path="/admin/" element={<PrivateRoute />}>
+            <Route path="login" element={<Login />} />
+            <Route path="home" element={<AdminDashboard />} />
+            <Route path="manageUser" element={<ManageUser/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -12,7 +12,7 @@ const selectedFlightSlice = createSlice({
       state.arrivalTime= action.payload.arrivalTime;     
       state.scheduleId= action.payload.scheduleId;           
       state.totalPrice= action.payload.totalPrice;
-
+      state.airline=action.payload.airline;
     }
   }
 });

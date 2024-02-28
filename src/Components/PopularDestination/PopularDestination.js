@@ -24,8 +24,7 @@ export default function PopularDestination() {
 								<div className="overlay overlay-bg"></div>
 								<img className="img-fluid" src={d1} alt=""/>
 							</div>
-							<div className="desc">	
-								<a href="#" className="price-btn">$150</a>			
+							<div className="desc">			
 								<h4>Mountain River</h4>
 								<p>Paraguay</p>			
 							</div>
@@ -37,8 +36,7 @@ export default function PopularDestination() {
 								<div className="overlay overlay-bg"></div>
 								<img className="img-fluid" src={d2} alt=""/>
 							</div>
-							<div className="desc">	
-								<a href="#" className="price-btn">$250</a>			
+							<div className="desc">			
 								<h4>Dream City</h4>
 								<p>Paris</p>			
 							</div>
@@ -50,8 +48,7 @@ export default function PopularDestination() {
 								<div className="overlay overlay-bg"></div>
 								<img className="img-fluid" src={d3} alt=""/>
 							</div>
-							<div className="desc">	
-								<a href="#" className="price-btn">$350</a>			
+							<div className="desc">			
 								<h4>Cloud Mountain</h4>
 								<p>Sri Lanka</p>			
 							</div>

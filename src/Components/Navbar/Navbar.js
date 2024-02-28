@@ -25,6 +25,14 @@ function Navbar(){
         navbarMenu.style.display="none";
     }
 
+    var Logout=()=>{
+      sessionStorage.removeItem("username")
+      sessionStorage.removeItem("role")
+      sessionStorage.removeItem("userId")
+      sessionStorage.removeItem("token")
+      navigate('/')
+    }
+
     return(
         <>
         <nav className="navbar bg-custom fixed-top" id="navbar-main">
@@ -44,6 +52,9 @@ function Navbar(){
             </li>)}
             {isLoggedIn && (<li className="nav-item">
               <a className="nav-link" href="#">Account</a>
+            </li>)}
+            {isLoggedIn && (<li className="nav-item">
+              <a className="nav-link" onClick={Logout}>Logout</a>
             </li>)}
             </ul>
             <button className="navbar-toggler link-btn" type="button" onClick={() => navigate('/navMenu')} id="menu-btn">

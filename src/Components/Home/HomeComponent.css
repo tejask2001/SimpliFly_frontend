@@ -110,7 +110,7 @@
 @media (max-width: 900px) {
 .home-main{
     flex-direction: column;
-    height: 130vh;
+    height: 150vh;
     padding-top: 20%;
     justify-content: flex-start;
 }

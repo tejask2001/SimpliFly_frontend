@@ -1,5 +1,5 @@
 .popular-destination-area{
-    margin-top: 105vh;
+    margin-top: 110vh;
 }
 .popular-destination-div{
     display: flex;
@@ -9,7 +9,7 @@
 
 @media (max-width: 900px) {
     .popular-destination-area{
-        margin-top: 135vh;
+        margin-top: 155vh;
     }
 }
 

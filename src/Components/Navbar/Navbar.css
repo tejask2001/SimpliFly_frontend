@@ -4,10 +4,10 @@
 
 .bg-custom{
     position:absolute;
-    background-color: rgb(101, 198, 246);
+    background-color: #1a77a3;
 }
 .navbar-nav{
-    width: 30%;
+    width: 40%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -36,11 +36,11 @@
     font-size: 22px;
     font-weight: bold;
     font-family: 'Roboto Slab', serif;
-    text-shadow: 3px 3px 4px rgba(0, 0, 0, 1.2);
     color: white;
 }
 .nav-link:hover{
-    color: rgb(180, 186, 188);
+    color: rgb(196, 235, 248);
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 1.2);
 }
 .link-btn{
     display: none;

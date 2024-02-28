@@ -43,12 +43,10 @@ var requestOptions = {
       .then((res) => {
         addScheduleDetails.routeId=res
         console.log(addScheduleDetails);
-    })
-      .catch(err => console.log(err));
-
-      var RequestOptions = {
+        var RequestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+        'Authorization':'Bearer '+token  },
         body : JSON.stringify(addScheduleDetails)
       }
       fetch("http://localhost:5256/api/Schedule",RequestOptions)
@@ -61,7 +59,8 @@ var requestOptions = {
       console.error('Error:', err);
       alert('Error adding schedule.');
     });
-
+    })
+      .catch(err => console.log(err));
   }
 
   useState(() => {

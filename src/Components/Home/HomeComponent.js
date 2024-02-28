@@ -29,6 +29,11 @@ export default function HomeComponent() {
 
   var searchFlight = (e) => {
     e.preventDefault();
+    if (!Origin || !Destination || !dateOfJourney ){
+      alert('Please fill in all required fields');
+      return;
+    }
+
     searchFlightDetails.dateOfJourney = dateOfJourney;
     searchFlightDetails.Origin = Origin;
     searchFlightDetails.Destination = Destination;
@@ -123,6 +128,7 @@ export default function HomeComponent() {
                     onChange={(e)=>setOrigin(e.target.value)}
                     placeholder="City or airport"
                     id="departure"
+                    required
                   />
                 </div>
                 <div className="arrival-div">
@@ -134,6 +140,7 @@ export default function HomeComponent() {
                     onChange={(e)=>setDestination(e.target.value)}
                     placeholder="City or airport"
                     id="arrival"
+                    required
                   />
                 </div>
               </div>

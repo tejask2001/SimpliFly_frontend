@@ -1,5 +1,6 @@
 import React from 'react'
 import './AboutPage.css'
+import Footer from '../Footer/Footer'
 
 export default function AboutPage() {
   return (
@@ -29,6 +30,7 @@ export default function AboutPage() {
         planning and booking with Simplifly today!
       </div>  
       </div>
+      <Footer/>
     </div>
   )
 }

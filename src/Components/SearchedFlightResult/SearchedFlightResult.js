@@ -8,6 +8,7 @@ import airIndia from "../../Assets/Images/airindia.png";
 import vistara from "../../Assets/Images/vistara.png";
 import { useNavigate } from "react-router-dom";
 import { addSearchFlightResult} from '../../SearchFlightResultSlice'
+import Footer from "../Footer/Footer";
 
 export default function SearchedFlightResult() {
   const [isRoundtrip, setIsRoundtrip] = useState(false);
@@ -79,7 +80,8 @@ export default function SearchedFlightResult() {
       departureTime:flight.departureTime,
       arrivalTime:flight.arrivalTime,
       totalPrice:flight.totalPrice,
-      scheduleId:flight.scheduleId
+      scheduleId:flight.scheduleId,
+      airline:flight.airline
     }))
 
     navigate('/bookingDetails')
@@ -210,8 +212,8 @@ export default function SearchedFlightResult() {
         Search
       </button>
         </div>
-        
       </div>
+      
       <div className="available-flights-div">
         {getSearchFlightResult.map((flight, index) => (
           <div key={index} className="key-div">
