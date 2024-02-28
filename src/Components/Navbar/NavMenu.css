@@ -10,7 +10,7 @@
     width: 97%;
     height: 10%;
     margin :1.5%;
-    background-color: #4fa3e3;
+    background-color: #1a77a3;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@
     justify-content: start;
     text-decoration: underline;
     background-color: white;
-    color: #4fa3e3;
+    color: #1a77a3;
 }
 .back:hover{
     cursor: pointer;
@@ -40,7 +40,7 @@
     font-weight: 400;
     font-style: normal;
     font-size: 36px;
-    color: #4fa3e3;
+    color: #1a77a3;
     position: fixed;
     bottom: 10%;
     left: 50%;

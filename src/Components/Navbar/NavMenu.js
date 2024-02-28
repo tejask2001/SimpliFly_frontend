@@ -6,6 +6,15 @@ import { Link } from 'react-router-dom'
 export default function NavMenu() {
     var isLoggedIn=sessionStorage.getItem("token")
     var navigate=useNavigate()
+    
+    var Logout=()=>{
+      sessionStorage.removeItem("username")
+      sessionStorage.removeItem("role")
+      sessionStorage.removeItem("userId")
+      sessionStorage.removeItem("token")
+      navigate('/')
+    }
+
   return (
     <div>
       <div className="navbar-menu" id="nav-menu">
@@ -18,6 +27,7 @@ export default function NavMenu() {
         <div className="booking nav-menu-link" onClick={() => navigate('/about')}>About</div>
         {!isLoggedIn && <div className="account nav-menu-link" onClick={() => navigate('/login')}>Login</div>}
         {isLoggedIn && <div className="account nav-menu-link" onClick={() => navigate('/account')}>Account</div>}
+        {isLoggedIn && <div className="account nav-menu-link" onClick={Logout}>Logout</div>}
         <div className="simplifly-txt">Simplifly</div>
       </div>
     </div>

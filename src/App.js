@@ -21,6 +21,7 @@ import ManageUser from "./Components/ManageUsers/ManageUser";
 import RegisterUser from "./Components/RegisterUser/RegisterUser";
 import RegisteredSuccessfully from "./Components/RegisteredSuccessfullyMsg/RegisteredSuccessfully";
 import RegisterAdmin from "./Components/RegisterAdmin/RegisterAdmin";
+import UserAccount from "./Components/UserAccount/UserAccount";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="searchFlightResult" element={<SearchedFlightResult />} />
           <Route path="bookingDetails" element={<BookingDetails />} />
           <Route path="seatBooking" element={<SeatLayout/>}/>
+          <Route path="userAccount" element={<UserAccount/>}/>
           <Route path="*" element={<Error />} />
         </Route>
         <Route path="/flightOwner/" element={<PrivateRoute />}>

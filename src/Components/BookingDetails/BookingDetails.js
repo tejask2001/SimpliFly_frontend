@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer";
 
 export default function BookingDetails() {
   var selectedFlight = useSelector((state) => state.selectedFlight);
+  var getSearchDetails=useSelector((state)=>state.searchFlight)
   var passengerIds= useSelector((state)=>state.passengerIds)
   var [name, setName] = useState();
   var [age, setAge] = useState();
@@ -52,6 +53,12 @@ export default function BookingDetails() {
   const [passengers, setPassengers] = useState([]);
 
   function AddPassenger() {
+    var totalPassengers=getSearchDetails.Adult+getSearchDetails.Child
+    var totalAddedPassengers=passengers.length
+    if(totalAddedPassengers>=totalPassengers){
+      alert("You can add only "+totalPassengers+" passengers")
+      return
+    }
     var passenger = {
       name: name,
       age: parseInt(age),
@@ -59,6 +66,8 @@ export default function BookingDetails() {
     };
 
     setPassengers([...passengers, passenger]);
+    
+    console.log("Passenger selected : "+totalPassengers+", Passenger added : "+totalAddedPassengers)
   }
   function removePassenger(index) {
     const updatedPassengers = [...passengers];
@@ -181,9 +190,9 @@ function BookSeats() {
           </div>
           <button
             type="button"
-            className="btn btn-danger btn-remove"
+            className="btn btn-remove"
             onClick={AddPassenger}
-            id="removePassengerBtn"
+            id="addPassengerBtn"
           >
             Add Passenger
           </button>

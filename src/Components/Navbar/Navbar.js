@@ -51,10 +51,10 @@ function Navbar(){
               <Link  className="nav-link" to="/login">Login</Link>
             </li>)}
             {isLoggedIn && (<li className="nav-item">
-              <a className="nav-link" href="#">Account</a>
+            <Link  className="nav-link" to="/userAccount">Account</Link>
             </li>)}
             {isLoggedIn && (<li className="nav-item">
-              <a className="nav-link" onClick={Logout}>Logout</a>
+              <a className="nav-link logout-btn" onClick={Logout}>Logout</a>
             </li>)}
             </ul>
             <button className="navbar-toggler link-btn" type="button" onClick={() => navigate('/navMenu')} id="menu-btn">

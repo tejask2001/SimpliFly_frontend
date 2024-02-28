@@ -45,6 +45,9 @@
 .link-btn{
     display: none;
 }
+.logout-btn:hover{
+    cursor: pointer;
+}
 @media (max-width: 1000px) {
     .nav-links {
         display: none;

@@ -91,7 +91,7 @@ export default function Login() {
           )
             .then((response) => response.json())
             .then((response) =>
-              sessionStorage.setItem("ownerId", response.ownerId)
+              sessionStorage.setItem("adminId", response.adminId)
             )
             .catch((err) => console.log(err));
 
