@@ -18,14 +18,17 @@ export default function HomeComponent() {
   var dispatch = useDispatch();
     
   var[dateOfJourney,setDateOfJourney]= useState(new Date());
-  var[Origin,setOrigin]=useState();
-  var[Destination,setDestination]=useState();
+  var[Origin,setOrigin]=useState('');
+  var[Destination,setDestination]=useState('');
   var[Adult,setAdult]=useState(1);
   var[Child,setChild]=useState(0);
   var[SeatClass,setSeatClass]=useState('economy')
   var[searchFlightDetails,setSearchFlightDetails]=useState()
   var searchFlightDetails={}
 
+  const handleSeatClassChange = (e) => {
+    setSeatClass(e.target.value);
+  };
 
   var searchFlight = (e) => {
     e.preventDefault();
@@ -69,13 +72,19 @@ export default function HomeComponent() {
       .then(res => res.json())
       .then(res => {
           console.log(res);
-          setSearchFlightDetails(res);
-          dispatch(addSearchFlightResult({ searchFlightResult: res }));
+          if(res.length===0){
+            alert("No flights available")
+            return            
+          }
+          else{
+            setSearchFlightDetails(res);
+            dispatch(addSearchFlightResult({ searchFlightResult: res }));
+            navigate('/searchFlightResult')
+          }         
 
         })
       .catch(err => console.log(err));
       
-      navigate('/searchFlightResult')
   }
   
     const handleFlightTypeChange = (e) => {
@@ -106,18 +115,6 @@ export default function HomeComponent() {
         <div className="flight-search-container">
           <div className="booking-form-container">
             <form>
-              <div className="form-options">
-                <label htmlFor="one-way" className="one-way">
-                  <input type="radio" id="one-way" name="flight-type" checked={!isRoundtrip}
-                onChange={handleFlightTypeChange} />
-                  <span></span>One way
-                </label>
-                <label htmlFor="roundtrip" className="roundtrip">
-                  <input type="radio" id="roundtrip" name="flight-type" checked={isRoundtrip}
-                onChange={handleFlightTypeChange} />
-                  <span></span>Roundtrip
-                </label>
-              </div>
               <div className="source-destination-div">
                 <div className="departure-div">
                   <label htmlFor="departure">Flying from</label>
@@ -165,7 +162,7 @@ export default function HomeComponent() {
                   <input type="number" id="childpassengerCount" value={Child} name="passengerCount" min="0" max="5" onChange={(e) => setChild(e.target.value)} />
                 </div>
               </div>
-              <select className="seatClass" value={(e)=>setSeatClass(e.target.value)}>
+              <select className="seatClass" value={SeatClass} onChange={handleSeatClassChange}> 
                   <option value='economy'>Economy</option>
                   <option value='premiumEconomy'>Premium Economy</option>
                   <option value='businessClass'>Business Class</option>

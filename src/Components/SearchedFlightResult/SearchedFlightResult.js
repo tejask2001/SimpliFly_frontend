@@ -9,6 +9,8 @@ import vistara from "../../Assets/Images/vistara.png";
 import { useNavigate } from "react-router-dom";
 import { addSearchFlightResult} from '../../SearchFlightResultSlice'
 import Footer from "../Footer/Footer";
+import uparrow from '../../Assets/Images/up-arrow.png'
+import downarrow from '../../Assets/Images/down-arrow.png'
 
 export default function SearchedFlightResult() {
   const [isRoundtrip, setIsRoundtrip] = useState(false);
@@ -104,6 +106,15 @@ export default function SearchedFlightResult() {
   const handleFlightTypeChange = (e) => {
     setIsRoundtrip(e.target.id === "roundtrip");
   };
+  const handleSeatClassChange = (e) => {
+    setSeatClass(e.target.value);
+  };
+  const handleAdultChange = (e) => {
+    setAdult(e.target.value);
+  };
+  const handleChildChange = (e) => {
+    setChild(e.target.value);
+  };
 
   const getAirlineImage = (airline) => {
     airline = airline.toLowerCase();
@@ -119,35 +130,25 @@ export default function SearchedFlightResult() {
     }
   };
 
+  const [showArrow, setShowArrow] = useState(false);
+  function DisplaySearch(){
+    var showSearchDetails=document.getElementById('search-flight-details-div')
+    if(showArrow){
+      showSearchDetails.style.display="none"
+    }
+    else{
+      showSearchDetails.style.display="flex"
+    }
+      setShowArrow(!showArrow)
+  }
+
   return (
     <div className="searched-flight-result-page">
-      <div className="search-flight-details-div">
-
-        <div className="radio-btn grid">
-          <div className="radio-btn-div">
-            <label htmlFor="one-way">
-              <input
-                type="radio"
-                id="one-way"
-                name="flight-type"
-                checked={!isRoundtrip}
-                onChange={handleFlightTypeChange}
-              />
-              <span></span>One way
-            </label>
-            <label htmlFor="roundtrip" >
-              <input
-                type="radio"
-                id="roundtrip"
-                name="flight-type"
-                checked={isRoundtrip}
-                onChange={handleFlightTypeChange}
-              />
-              <span></span>Roundtrip
-            </label>
-          </div>
-        </div>
-
+      <div className="search-flight-options" onClick={DisplaySearch}>
+        {showArrow ? <img src={uparrow} className="arrow-img" id="down-arrow"/>:
+        <img src={downarrow} className="arrow-img" id="up-arrow"/>}
+      </div>
+      <div className="search-flight-details-div" id="search-flight-details-div">
         <div className="grid">
           <label><b>Source :</b></label>
           <input
@@ -180,7 +181,7 @@ export default function SearchedFlightResult() {
         <div className="passenger-count-div grid">
           <div className="adult-select-div">
           <label htmlFor="adult-select"><b>Adult : </b></label>
-          <select id="adult-select" value={Adult} onChange={(e)=>setAdult(parseInt(e.target.value))}>
+          <select id="adult-select" value={Adult} onChange={handleAdultChange}>
             <option value='1'>1</option>
             <option value='2'>2</option>
             <option value='3'>3</option>
@@ -190,7 +191,7 @@ export default function SearchedFlightResult() {
           </div>
           <div className="child-select-div">
           <label htmlFor="adult-select"><b>Child : </b></label>
-          <select id="child-select" value={Child} onChange={(e) => setChild(parseInt(e.target.value))}>
+          <select id="child-select" value={Child} onChange={handleChildChange}>
           <option value='0'>0</option>
             <option value='1'>1</option>
             <option value='2'>2</option>
@@ -201,7 +202,7 @@ export default function SearchedFlightResult() {
           </div>
         </div>
         <div className="grid">
-        <select className="seatClass" value={(e)=>setSeatClass(e.target.value)}>
+        <select className="seatClass" value={SeatClass} onChange={handleSeatClassChange}>
                   <option value='economy'>Economy</option>
                   <option value='premiumEconomy'>Premium Economy</option>
                   <option value='businessClass'>Business Class</option>

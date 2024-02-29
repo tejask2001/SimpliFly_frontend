@@ -40,15 +40,13 @@
 }
 #seats{
     background-color: rgb(93, 177, 230);
+    border: 1px solid black;
     height: 70%;
     width: 80%;
     display: flex;
     align-items: center;
     border-radius: 8px;
     justify-content: center;
-}
-.seats:hover{
-
 }
 .passage{
     height: 90%;
@@ -58,12 +56,22 @@
 }
 .booked {
     background-color: red; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
     
   }
   .selected {
-    background-color: green; 
+    background-color: rgb(55, 191, 93); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
   }
-
+#seats:hover{
+  cursor: pointer;
+}
 
   .pay-btn{
     width: 30%;
@@ -97,4 +105,30 @@
     box-shadow: 2px 2px 8px rgb(145, 143, 143);
     color: white;
     font-weight: bold;
+}
+
+@media (max-width: 900px) {
+  .seat-layout {
+    margin-top: 20%;
+}
+.seat-color-div{
+  display: none;
+}
+.seat-layout-div{
+  flex-direction: column;
+  width: 100%;
+}
+.seat-selection{
+  width: 80%;
+}
+.pay-btn{
+  width: 50%;
+  margin: 10px;
+}
+.passage{
+  width: 4%;
+}
+.payment-form-div{
+  width: 80%;
+}
 }

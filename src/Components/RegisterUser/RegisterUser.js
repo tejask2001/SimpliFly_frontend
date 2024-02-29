@@ -62,7 +62,7 @@ var RequestOption ={
       <div className="register-page">
         <img src={background} className="background-img" />
         <div className="register-div">
-          <h3>Register as Flight Owner</h3>
+          <h3>Register as User</h3>
           <form>
             {displayUsernamePasswordDiv && <div className="username-password-div" id="username-password-div">
             <div className="username-div">

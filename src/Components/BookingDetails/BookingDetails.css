@@ -101,3 +101,31 @@ margin: 10px;
 #addPassengerBtn:hover{
   box-shadow: 2px 2px 8px rgb(145, 143, 143);
 }
+
+@media (max-width: 900px) {
+  .booking-details-page{
+    margin-top: 25%;
+  }
+  .booking-details-page .available-flights-div{
+    width: 96%;
+    height: auto;
+    flex-direction: column;
+  }
+  .selected-flight-source,.selected-flight-destination{
+    flex-direction: row;
+    width: 94%;
+    justify-content: space-between;
+  }
+  .passenger-form{
+    width: 90%;
+  }
+  .added-passenger{
+    width: 96%;
+  }
+  ul{
+    padding-left: 0;
+  }
+  .book-seats-btn{
+    width: 60%;
+  }
+}

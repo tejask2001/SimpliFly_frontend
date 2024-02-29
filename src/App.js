@@ -22,6 +22,7 @@ import RegisterUser from "./Components/RegisterUser/RegisterUser";
 import RegisteredSuccessfully from "./Components/RegisteredSuccessfullyMsg/RegisteredSuccessfully";
 import RegisterAdmin from "./Components/RegisterAdmin/RegisterAdmin";
 import UserAccount from "./Components/UserAccount/UserAccount";
+import CustomerBooking from "./Components/CustomerBookings/CustomerBooking";
 
 function App() {
   return (

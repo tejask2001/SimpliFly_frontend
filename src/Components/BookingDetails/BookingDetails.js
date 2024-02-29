@@ -12,9 +12,9 @@ export default function BookingDetails() {
   var selectedFlight = useSelector((state) => state.selectedFlight);
   var getSearchDetails=useSelector((state)=>state.searchFlight)
   var passengerIds= useSelector((state)=>state.passengerIds)
-  var [name, setName] = useState();
-  var [age, setAge] = useState();
-  var [passpostNumber, setPassportNumber] = useState();
+  var [name, setName] = useState('');
+  var [age, setAge] = useState('');
+  var [passpostNumber, setPassportNumber] = useState('');
   var navigate = useNavigate();
   var dispatch= useDispatch();
   var token=sessionStorage.getItem('token')
@@ -75,8 +75,15 @@ export default function BookingDetails() {
     setPassengers(updatedPassengers);
   }
 
-  function AddPassengers() {}
-var passengerIds=[]
+  const handlePassengerNameChange = (e) => {
+    setName(e.target.value);
+  };
+  const handlePassengerAgeChange = (e) => {
+    setAge(e.target.value);
+  };
+  const handlePassportNumberChange = (e) => {
+    setPassportNumber(e.target.value);
+  };
 
 function BookSeats() {
   const fetchPromises = passengers.map((passenger) => {
@@ -146,7 +153,7 @@ function BookSeats() {
         </div>
         <p className="flight-price">&#8377; {selectedFlight.totalPrice}</p>
       </div>
-      <div class="passenger-form">
+      <div className="passenger-form">
         <div className="passenger-list">
           <h4>Passengers</h4>
           <div id="passengerList"></div>
@@ -160,11 +167,11 @@ function BookSeats() {
               className="form-control"
               id="passengerName${index}"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={handlePassengerNameChange}
               required
             />
 
-            <label for="passengerAge${index}" className="form-label">
+            <label htmlFor="passengerAge${index}" className="form-label">
               Age
             </label>
             <input
@@ -172,11 +179,11 @@ function BookSeats() {
               className="form-control"
               id="passengerAge${index}"
               value={age}
-              onChange={(e) => setAge(e.target.value)}
+              onChange={handlePassengerAgeChange}
               required
             />
 
-            <label for="passengerAge${index}" className="form-label">
+            <label htmlFor="passengerAge${index}" className="form-label">
               Passport Number
             </label>
             <input
@@ -184,7 +191,7 @@ function BookSeats() {
               className="form-control"
               id="passport${index}"
               value={passpostNumber}
-              onChange={(e) => setPassportNumber(e.target.value)}
+              onChange={handlePassportNumberChange}
               required
             />
           </div>

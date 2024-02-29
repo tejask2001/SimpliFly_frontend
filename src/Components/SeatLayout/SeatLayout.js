@@ -76,6 +76,16 @@ export default function SeatLayout() {
   var [paymentDetails,setPaymentDetails]=useState({'cardNumber':cardNumber,'expiryDate':expiry,'cvv':cvv})
   var bookingDetails={}
 
+  const handleCardNumberChange = (e) => {
+    setCardNumber(e.target.value);
+  };
+  const handleExpiryChange = (e) => {
+    setExpiry(e.target.value);
+  };
+  const handleCvvChange = (e) => {
+    setCvv(e.target.value);
+  };
+
   function BookTicket() {
     bookingDetails.scheduleId=scheduleId;
     bookingDetails.userId=parseInt(userId);
@@ -138,20 +148,20 @@ export default function SeatLayout() {
           <div className="payment-form mt-4 payment-form-div">
             <h4>Payment Details</h4>
             <div className="mb-3">
-              <label for="cardNumber" class="form-label">
+              <label htmlFor="cardNumber" className="form-label">
                 Card Number
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="cardNumber"
                 required
                 value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
+                onChange={handleCardNumberChange}
               />
             </div>
             <div className="mb-3">
-              <label for="expiryDate" className="form-label">
+              <label htmlFor="expiryDate" className="form-label">
                 Expiry Date
               </label>
               <input
@@ -160,12 +170,12 @@ export default function SeatLayout() {
                 id="expiryDate"
                 placeholder="MM/YYYY"
                 value={expiry}
-                onChange={(e) => setExpiry(e.target.value)}
+                onChange={handleExpiryChange}
                 required
               />
             </div>
             <div className="mb-3">
-              <label for="cvv" className="form-label">
+              <label htmlFor="cvv" className="form-label">
                 CVV
               </label>
               <input
@@ -173,7 +183,7 @@ export default function SeatLayout() {
                 className="form-control"
                 id="cvv"
                 value={cvv}
-                onChange={(e) => setCvv(e.target.value)}
+                onChange={handleCvvChange}
                 required
               />
             </div>

@@ -15,7 +15,7 @@
     padding-right: 2%;
     display: flex;
     margin: 10px;
-    border-bottom: 0.5px solid grey;
+    border-bottom: 4px solid #105f83;
 }
 .grid {
     margin: 10px;
@@ -110,9 +110,55 @@ align-items: center;
   background-color: #ff450c;
   box-shadow: 2px 2px 8px rgb(145, 143, 143);
 }
+.search-flight-options{
+  display: none;
+}
 @media (max-width: 900px) {
   .search-flight-details-div{
     flex-direction: column;
     height: 80%;
+  }
+  .search-flight-options{
+    width: 100%;
+    background-color: rgb(176, 216, 248);
+    display: flex;
+    justify-content: center;
+margin-top: 15%;
+  }
+  .adult-select-div,.child-select-div{
+    margin: 5px;
+    width: 80%;
+  }
+  .search-flight-details-div{
+    display: none;
+  }
+  .passenger-count-div{
+    width: 94%;
+  }
+  .available-flights-div{
+    width: 94%;
+  }
+  .arrow-img{
+    width: 20px;
+    margin: 2px;
+    height: auto;
+  }
+  .key-div{
+    height: 100%;
+    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  }
+  .flight-source,.flight-destination{
+    width: 80%;
+    justify-content: space-between;
+  }
+  .book-btn{
+    width: 80%;
+  }
+  .flight-source,.flight-destination{
+    flex-direction: row;
   }
 }
