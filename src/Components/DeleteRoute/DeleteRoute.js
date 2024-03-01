@@ -31,7 +31,7 @@ export default function DeleteRoute() {
     })
     .catch(err => {
       console.error('Error:', err);
-      alert('Error deleting Route.');
+      alert('No Such Route Present');
     });
   }
 

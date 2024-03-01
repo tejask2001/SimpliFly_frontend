@@ -10,6 +10,10 @@ export default function AddFlight() {
 
   var flightDetails={}
   var AddFlight =(e)=>{
+    if(!flightNumber || !airline || !totalSeats || !basePrice){
+      alert("Enter all required fields");
+      return
+    }
     e.preventDefault();
     flightDetails.flightNumber=flightNumber;
     flightDetails.airline=airline;
@@ -45,19 +49,19 @@ export default function AddFlight() {
       <form className='add-flight-form'>
                 <div className='flight-number-div flight-detail-div'>
                   <label htmlFor='flight-number'><b>Flight Number : </b></label>
-                  <input type='text' placeholder='Enter flight number' value={flightNumber} onChange={(e)=>setFlightNumber(e.target.value)}/>
+                  <input type='text' placeholder='Enter flight number' value={flightNumber} onChange={(e)=>setFlightNumber(e.target.value)} required/>
                 </div>
                 <div className='flight-airline-div flight-detail-div'>
                   <label htmlFor='flight-airline'><b>Airline : </b></label>
-                  <input type='text' placeholder='Enter airline' value={airline} onChange={(e)=>setAirline(e.target.value)}/>
+                  <input type='text' placeholder='Enter airline' value={airline} onChange={(e)=>setAirline(e.target.value)} required/>
                 </div>
                 <div className='total-seats-div flight-detail-div'>
                   <label htmlFor='total-seats'><b>Total Seats : </b></label>
-                  <input type='number' placeholder='Enter total seats' value={totalSeats} onChange={(e)=>setTotalSeats(e.target.value)}/>
+                  <input type='number' placeholder='Enter total seats' value={totalSeats} onChange={(e)=>setTotalSeats(e.target.value)} required/>
                 </div>
                 <div className='base-price-div flight-detail-div'>
                   <label htmlFor='base-price'><b>Base Price : </b></label>
-                  <input type='number' placeholder='Enter base price' value={basePrice} onChange={(e)=>setBasePrice(e.target.value)}/>
+                  <input type='number' placeholder='Enter base price' value={basePrice} onChange={(e)=>setBasePrice(e.target.value)} required/>
                 </div>
                   <button type='button' className='add-flight-btn' onClick={AddFlight}>Add Flight</button>
         </form>

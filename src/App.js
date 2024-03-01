@@ -23,6 +23,7 @@ import RegisteredSuccessfully from "./Components/RegisteredSuccessfullyMsg/Regis
 import RegisterAdmin from "./Components/RegisterAdmin/RegisterAdmin";
 import UserAccount from "./Components/UserAccount/UserAccount";
 import CustomerBooking from "./Components/CustomerBookings/CustomerBooking";
+import ManageBooking from "./Components/ManageBookings/ManageBooking";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route path="manageFlight" element={<ManageFlight />} />
             <Route path="manageRoute" element={<ManageRoute />} />
             <Route path="manageSchedule" element={<ManageSchedule />} />
+            <Route path="manageBooking" element={<ManageBooking/>}/>
         </Route>
         <Route path="/admin/" element={<PrivateRoute />}>
             <Route path="login" element={<Login />} />

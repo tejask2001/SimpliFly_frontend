@@ -7,11 +7,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
-  var [Username, setUsername] = useState();
-  var [Password, setPassword] = useState();
+  var [Username, setUsername] = useState('');
+  var [Password, setPassword] = useState('');
   var [userDetails, setUserDetails] = useState([]);
   var user = {};
   var Login = (e) => {
+    if(!Username || !Password){
+      alert("Please enter username and password")
+      return;
+    }
     e.preventDefault();
     user.Username = Username;
     user.Password = Password;
@@ -100,6 +104,7 @@ export default function Login() {
       })
       .catch((err) => {
         console.log(err);
+        alert("Invalid username or password")
       });
   };
 
@@ -135,9 +140,11 @@ export default function Login() {
             <input type="submit" value="Login" id="login-btn" onClick={Login} />
           </form>
           <p className="register-text">
-            Don't have account,
+            Don't have account, register as-<br/>
             <span id="registerhere-text">
-              <Link to="/register">Register here</Link>
+              <button className='register-option-btn' onClick={()=>navigate('/registerUser')}>Customer</button>
+              <button className='register-option-btn' onClick={()=>navigate('/register')}>FlightOwner</button>
+              <button className='register-option-btn' onClick={()=>navigate('/registerAdmin')}>Admin</button>
             </span>
           </p>
         </div>

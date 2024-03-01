@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './GetSchedule.css'
 import axios from 'axios'
+import indigo from "../../Assets/Images/indigo.png";
+import airIndia from "../../Assets/Images/airindia.png";
+import vistara from "../../Assets/Images/vistara.png";
 
 export default function GetSchedule() {
     var [schedules,setSchedules]=useState([])
@@ -25,6 +28,21 @@ export default function GetSchedule() {
                     console.log(err)
                 })
               }
+
+              const getAirlineImage = (airline) => {
+                airline = airline.toLowerCase();
+                switch (airline) {
+                  case "indigo":
+                    return indigo;
+                  case "air india":
+                    return airIndia;
+                  case "vistara":
+                    return vistara;
+                  default:
+                    return indigo;
+                }
+              };
+
   return (
     <div>
       <div className='schedule-div'>        
@@ -33,7 +51,12 @@ export default function GetSchedule() {
         <div key={index} className='schedule-list-div'>
           <div className='schedule-flight-detail'>
             <div><b>Flight Number :</b> {schedule.flightId}</div>
-            <div><b>Airline :</b> {schedule.flight.airline}</div>
+            <div><b>Airline :</b> {schedule.flight.airline}
+            <img
+                src={getAirlineImage(schedule.flight.airline)}
+                className="airline-logo"
+              />
+            </div>
           </div>
           <div className='schedule-route-detail'>
           <div className='schedule-source-detail'>

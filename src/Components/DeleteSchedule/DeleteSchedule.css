@@ -36,7 +36,10 @@
       width: 80%;
       font-size: 18px;
   }
-  
+  .airport-select-div{
+width: 100%;
+  }
+
   .flightnumber-input-div,.date-div{
       width: 100%;
       display: flex;

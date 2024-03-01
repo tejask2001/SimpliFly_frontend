@@ -1,12 +1,12 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './GetRoute.css'
 
 export default function GetRoute() {
 
     var [routes,setRoutes]=useState([])
 
-    var RouteData = () => {
+    useEffect(() => {
       const token=sessionStorage.getItem('token')
     const httpHeader={
       headers:{'Authorization':'Bearer '+token}
@@ -19,11 +19,10 @@ export default function GetRoute() {
                     .catch(function (error) {
                         console.log(error);
                       })
-                    };
+                    },[]);
 
   return (
     <div className='route-div'>
-        <button onClick={RouteData} className='get-route-btn'>Getdata</button>
         {routes.map((route,index)=>
         <div key={index} className='route-list-div'>
             <div><b>RouteId :</b> {route.id}</div>

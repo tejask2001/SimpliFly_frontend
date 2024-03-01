@@ -39,6 +39,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
     border-radius: 8px;
 }
 .username-div,.password-div{
@@ -92,7 +93,19 @@
     cursor: pointer;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
-
+.register-option-btn{
+    border-radius: 6px;
+    background-color: rgb(204, 244, 249);
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 8px;
+    padding: 3px;
+}
+.register-option-btn:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 8px rgb(145, 143, 143);
+    background-color: rgb(117, 198, 255);
+}
 @media (max-width: 1050px) {
     .login-div {
         width: 60%;

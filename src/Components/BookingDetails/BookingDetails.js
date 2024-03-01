@@ -5,19 +5,19 @@ import indigo from "../../Assets/Images/indigo.png";
 import airIndia from "../../Assets/Images/airindia.png";
 import vistara from "../../Assets/Images/vistara.png";
 import { useNavigate } from "react-router-dom";
-import {addPassenger} from '../../PassengerSlice'
+import { addPassenger } from "../../PassengerSlice";
 import Footer from "../Footer/Footer";
 
 export default function BookingDetails() {
   var selectedFlight = useSelector((state) => state.selectedFlight);
-  var getSearchDetails=useSelector((state)=>state.searchFlight)
-  var passengerIds= useSelector((state)=>state.passengerIds)
-  var [name, setName] = useState('');
-  var [age, setAge] = useState('');
-  var [passpostNumber, setPassportNumber] = useState('');
+  var getSearchDetails = useSelector((state) => state.searchFlight);
+  var passengerIds = useSelector((state) => state.passengerIds);
+  var [name, setName] = useState("");
+  var [age, setAge] = useState("");
+  var [passpostNumber, setPassportNumber] = useState("");
   var navigate = useNavigate();
-  var dispatch= useDispatch();
-  var token=sessionStorage.getItem('token')
+  var dispatch = useDispatch();
+  var token = sessionStorage.getItem("token");
 
   function getDate(date) {
     const formattedDate = date.toLocaleDateString();
@@ -51,13 +51,24 @@ export default function BookingDetails() {
   };
 
   const [passengers, setPassengers] = useState([]);
+  var totalPassengers = parseInt(getSearchDetails.Adult) + parseInt(getSearchDetails.Child);
 
   function AddPassenger() {
-    var totalPassengers=getSearchDetails.Adult+getSearchDetails.Child
-    var totalAddedPassengers=passengers.length
-    if(totalAddedPassengers>=totalPassengers){
-      alert("You can add only "+totalPassengers+" passengers")
-      return
+    var totalAddedPassengers = passengers.length;
+    if (totalAddedPassengers >= totalPassengers) {
+      alert("You can add only " + totalPassengers + " passengers");
+      return;
+    }
+    if (!name || !age || !passpostNumber) {
+      alert("Please enter passenger details");
+      return;
+    }
+    var isDuplicate = passengers.some(
+      (passenger) => passenger.passportNumber === passpostNumber
+    );
+    if (isDuplicate) {
+      alert("Passenger with same passport number already added");
+      return;
     }
     var passenger = {
       name: name,
@@ -66,8 +77,13 @@ export default function BookingDetails() {
     };
 
     setPassengers([...passengers, passenger]);
-    
-    console.log("Passenger selected : "+totalPassengers+", Passenger added : "+totalAddedPassengers)
+
+    console.log(
+      "Passenger selected : " +
+        totalPassengers +
+        ", Passenger added : " +
+        totalAddedPassengers
+    );
   }
   function removePassenger(index) {
     const updatedPassengers = [...passengers];
@@ -85,47 +101,56 @@ export default function BookingDetails() {
     setPassportNumber(e.target.value);
   };
 
-function BookSeats() {
-  const fetchPromises = passengers.map((passenger) => {
-    var requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify(passenger),
-    };
+  function BookSeats() {
+    var totalAddedPassengers = passengers.length;
+    if (totalAddedPassengers < totalPassengers) {
+      alert(`Add ${totalPassengers-totalAddedPassengers} more passengers`);
+      return;
+    }
+    const fetchPromises = passengers.map((passenger) => {
+      var requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(passenger),
+      };
 
-    return fetch("http://localhost:5256/api/Passenger", requestOptions)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("Response:", res);
-        return res.passengerId;
-      })
-      .catch((err) => {
-        alert("Error adding passenger.");
-       
-      });
-  });
-
-  Promise.all(fetchPromises)
-    .then((passengerIds) => {
-      dispatch(addPassenger({
-        passengerIds: passengerIds
-      }));
-      console.log(passengerIds);
-      navigate('/seatBooking')
-    })
-    .catch((error) => {
-      console.error("Error occured", error);
+      return fetch("http://localhost:5256/api/Passenger", requestOptions)
+        .then((res) => res.json())
+        .then((res) => {
+          console.log("Response:", res);
+          return res.passengerId;
+        })
+        .catch((err) => {
+          alert("Error adding passenger.");
+        });
     });
-}
+
+    Promise.all(fetchPromises)
+      .then((passengerIds) => {
+        dispatch(
+          addPassenger({
+            passengerIds: passengerIds,
+          })
+        );
+        console.log(passengerIds);
+        navigate("/seatBooking");
+      })
+      .catch((error) => {
+        console.error("Error occured", error);
+      });
+  }
 
   return (
     <div className="booking-details-page">
       <div className="available-flights-div">
         <div className="selected-flight-detail">
-          <img src={getAirlineImage(selectedFlight.airline)} className="airline-logo" />
+          <img
+            src={getAirlineImage(selectedFlight.airline)}
+            className="airline-logo"
+          />
           <div>
             <p className="selected-flight-details">{selectedFlight.airline}</p>
             <p className="fselected-light-details">
@@ -209,10 +234,15 @@ function BookSeats() {
       <ul className="added-passenger">
         {passengers.map((passenger, index) => (
           <li key={index} className="added-passenger-list">
-            <p><strong>Name:</strong> {passenger.name}</p>
-            <p><strong>Age:</strong>{" "}{passenger.age}</p> 
-            <p><strong>Passport Number:</strong>{" "}
-            {passenger.passportNumber}</p>
+            <p>
+              <strong>Name:</strong> {passenger.name}
+            </p>
+            <p>
+              <strong>Age:</strong> {passenger.age}
+            </p>
+            <p>
+              <strong>Passport Number:</strong> {passenger.passportNumber}
+            </p>
             <button
               className="remove-passenger-btn"
               onClick={() => removePassenger(index)}
@@ -226,7 +256,7 @@ function BookSeats() {
       <button onClick={BookSeats} className="book-seats-btn">
         Book Seats
       </button>
-      <Footer/>
-      </div>
+      <Footer />
+    </div>
   );
 }

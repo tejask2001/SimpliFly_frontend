@@ -7,6 +7,7 @@ import vistara from "../../Assets/Images/vistara.png";
 export default function CustomerBooking() {
   var [bookings,setBookings]=useState([])
   var userId=sessionStorage.getItem("userId")
+  
   useState(() => {
     fetch(`http://localhost:5256/api/users/GetBookingByCustomerId?customerId=${userId}`)
       .then((res) => res.json())
@@ -71,6 +72,10 @@ export default function CustomerBooking() {
             <p className="flight-details">{booking.booking.schedule.route.destinationAirport.city}</p>
             <p className="flight-details">{getDate(new Date(booking.booking.schedule.arrival)).formattedTime}</p>
             </div>
+            </div>
+            <div className='date-seat-div'>
+              <div>Departure Date : <b>{getDate(new Date(booking.booking.schedule.departure)).formattedDate}</b></div>
+              <div>Seat : <b>{booking.seatDetail.seatNumber} ({booking.seatDetail.seatClass})</b></div>
             </div>
             <div className='booking-passenger-details'>
                 <div>Passenger name : <b>{booking.passenger.name}</b></div>

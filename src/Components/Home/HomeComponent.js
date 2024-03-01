@@ -31,6 +31,10 @@ export default function HomeComponent() {
   };
 
   var searchFlight = (e) => {
+    if(Adult>5 || Child>5){
+      alert("Enter adult and child value less than 5");
+      return;
+    }
     e.preventDefault();
     if (!Origin || !Destination || !dateOfJourney ){
       alert('Please fill in all required fields');

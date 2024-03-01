@@ -31,9 +31,9 @@ export default function FlightOwnerHome() {
       </div>
     </div>
     <div className="child-div">
-      <div className="owner-function">
+      <div className="owner-function" onClick={()=>navigate('/flightOwner/manageBooking')}>
       <img src="https://cdn-icons-png.flaticon.com/512/4406/4406665.png" className="fun-img"/>
-      <h4>View Bookings</h4>
+      <h4>Manage Bookings</h4>
     </div>
     </div>
   </div>

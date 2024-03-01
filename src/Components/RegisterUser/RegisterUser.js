@@ -17,11 +17,14 @@ export default function RegisterUser() {
   var [name,setName]=useState("");
   var [email,setEmail]=useState("");
   var [phone,setPhone]=useState("");
-  var [gender,setGender]=useState("")
+  var [gender,setGender]=useState("male")
 
   var user={}
   
   var Register=(e)=>{
+    if(!name || !email || !phone){
+      alert("Enter all required details")
+    }
 e.preventDefault();
 user.username=username;
 user.password=password;
@@ -53,6 +56,14 @@ var RequestOption ={
   }
 
   function DisplayOtherDetails() {
+    if(!username || !password){
+      alert("Please enter username and password");
+      return;
+    }
+    if(password!=confirmPassword){
+      alert("Password and confirm password does not matched")
+      return;
+    }
     setDisplayOtherDetailsDiv(true);
     setDisplayUsernamePassword(false);
   }

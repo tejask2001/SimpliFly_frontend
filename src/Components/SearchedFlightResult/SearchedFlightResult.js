@@ -66,7 +66,14 @@ export default function SearchedFlightResult() {
       .then(res => res.json())
       .then(res => {
           console.log(res);
-          dispatch(addSearchFlightResult({ searchFlightResult: res }));
+          if(res.length===0){
+            alert("No flights available")
+            return            
+          }
+          else{
+            dispatch(addSearchFlightResult({ searchFlightResult: res }));
+            navigate('/searchFlightResult')
+          } 
 
         })
       .catch(err => console.log(err));

@@ -1,10 +1,39 @@
 import React, { useState } from 'react'
 import './DeleteFlight.css'
+import axios from 'axios';
 
 export default function DeleteFlight() {
 
     var [flightNumber,setFlightNumber]=useState();
-    
+    var [flights, setFlights] = useState([
+      {
+        airline: "",
+        flightNumber: "",
+        totalSeats: "",
+        basePrice: "",
+      },
+    ]);
+
+    const handleFlightNumberChange = (e) => {
+      setFlightNumber(e.target.value);
+    };
+
+    useState(() => {
+      const token=sessionStorage.getItem('token')
+      const httpHeader={
+        headers:{'Authorization':'Bearer '+token}
+    }
+      axios
+        .get("http://localhost:5256/api/Flight",httpHeader)
+        .then(function (response) {
+          setFlights(response.data);
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })},[]);
+        
+
     var DeleteFlightFun=(e)=>{
         e.preventDefault()
         console.log(flightNumber)
@@ -36,7 +65,17 @@ export default function DeleteFlight() {
     <div className='delete-flight-div'>
       <div className='delete-flight-detail-div'>
         <label htmlFor='flight-number'><b>Flight Number : </b></label>
-        <input type='text' placeholder='Enter flight number'value={flightNumber} onChange={(e)=>setFlightNumber(e.target.value)}/>
+        <select
+            className="select-destination-airport"
+            onChange={handleFlightNumberChange}
+          >
+            <option value="0">--Select flight--</option>
+            {flights.map((flight) => (
+              <option key={flight.flightNumber} value={flight.flightNumber}>
+                {flight.flightNumber}
+              </option>
+            ))}
+          </select>
       </div>
       <button type='button' className='delete-flight-btn' onClick={DeleteFlightFun}>Delete Flight</button>
     </div>

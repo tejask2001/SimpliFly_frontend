@@ -15,7 +15,7 @@ export default function GetFlight() {
     },
   ]);
 
-  var flightData = () =>{
+  useState(() => {
     const token=sessionStorage.getItem('token')
     const httpHeader={
       headers:{'Authorization':'Bearer '+token}
@@ -28,7 +28,7 @@ export default function GetFlight() {
       })
       .catch(function (error) {
         console.log(error);
-      })};
+      })});
       
   const getAirlineImage = (airline) => {
     airline = airline.toLowerCase();
@@ -47,7 +47,6 @@ export default function GetFlight() {
   return (
     <div className="get-flight-div">
       <div className="get-flight-options">
-        <button onClick={flightData} className="get-allflight-btn">Getdata</button>
         
       </div>
       {flights.map((flight, index) => (

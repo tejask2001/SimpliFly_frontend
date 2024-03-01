@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./UpdateFlight.css";
+import axios from "axios";
 
 export default function UpdateFlight() {
   const [updateAirline,setUpdateAirline]=useState(true)
@@ -8,9 +9,38 @@ export default function UpdateFlight() {
   var [flightNumber,setFlightNumber]=useState()
   var [airline,setAirline]=useState()
   var [seats,setSeats]=useState()
+  var [flights, setFlights] = useState([
+    {
+      airline: "",
+      flightNumber: "",
+      totalSeats: "",
+      basePrice: "",
+    },
+  ]);
+  
+  const token=sessionStorage.getItem('token')
 
   var updateAirlineDetail={}
   var updateSeatsDetail={}
+
+  useEffect(() => {
+    const token=sessionStorage.getItem('token')
+    const httpHeader={
+      headers:{'Authorization':'Bearer '+token}
+  }
+    axios
+      .get("http://localhost:5256/api/Flight",httpHeader)
+      .then(function (response) {
+        setFlights(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })},[]);
+
+      const handleFlightNumberChange = (e) => {
+        setFlightNumber(e.target.value);
+      };
 
     var UpdateFlightAirline=(e)=>{
         e.preventDefault();
@@ -18,7 +48,6 @@ export default function UpdateFlight() {
         updateAirlineDetail.airline=airline;
         console.log(updateAirlineDetail)
 
-        const token=sessionStorage.getItem('token')
         var RequestOption={
             method : 'PUT',
             headers : {
@@ -48,9 +77,11 @@ export default function UpdateFlight() {
 
         var RequestOption={
             method : 'PUT',
-            headers : {'Content-Type':'application/json'},
+            headers : {'Content-Type':'application/json',
+            'Authorization':'Bearer '+token},
             body : JSON.stringify(updateSeatsDetail)
         }
+
 
         fetch("http://localhost:5256/api/Flight/UpdateTotalSeats",RequestOption)
             .then(res=>res.json())
@@ -81,7 +112,17 @@ export default function UpdateFlight() {
                 <form>
                     <div className="flightnumber-input-div">
                         <label htmlFor="flight-number" ><b>Flight Number :</b> </label>
-                        <input type="text" placeholder="Enter Flight Number" value={flightNumber} onChange={(e)=>setFlightNumber(e.target.value)}/>
+                        <select
+            className="select-destination-airport"
+            onChange={handleFlightNumberChange}
+          >
+            <option value="0">--Select flight--</option>
+            {flights.map((flight) => (
+              <option key={flight.flightNumber} value={flight.flightNumber}>
+                {flight.flightNumber}
+              </option>
+            ))}
+          </select>
                     </div>
                     <div className="airline-input-div">
                         <label htmlFor="airline"><b>Airline :</b> </label>
@@ -94,7 +135,17 @@ export default function UpdateFlight() {
                 <form>
                     <div className="flightnumber-input-div">
                         <label htmlFor="flight-number"><b>Flight Number :</b> </label>
-                        <input type="text" placeholder="Enter Flight Number" value={flightNumber} onChange={(e)=>setFlightNumber(e.target.value)}/>
+                        <select
+            className="select-destination-airport"
+            onChange={handleFlightNumberChange}
+          >
+            <option value="0">--Select flight--</option>
+            {flights.map((flight) => (
+              <option key={flight.flightNumber} value={flight.flightNumber}>
+                {flight.flightNumber}
+              </option>
+            ))}
+          </select>
                     </div>
                     <div className="seats-input-div">
                         <label htmlFor="seats"><b>Seats :</b> </label>

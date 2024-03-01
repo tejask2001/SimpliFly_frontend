@@ -23,6 +23,9 @@ export default function RegisterFlightOwner() {
 
   var flightOwner={}
   var Register =(e)=>{
+    if(!name || !email || !contactNumber){
+      alert("Enter all required details")
+    }
     e.preventDefault();
     flightOwner.username=username;
     flightOwner.password=password;
@@ -55,6 +58,14 @@ export default function RegisterFlightOwner() {
   }
 
   function DisplayOtherDetails() {
+    if(!username || !password){
+      alert("Please enter username and password");
+      return;
+    }
+    if(password!=confirmPassword){
+      alert("Password and confirm password does not matched")
+      return;
+    }
     setDisplayOtherDetailsDiv(true);
     setDisplayUsernamePassword(false);
   }

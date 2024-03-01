@@ -29,6 +29,7 @@ export default function AboutPage() {
         Join millions of travelers who have chosen Simplifly for their journey. Experience the joy of seamless travel
         planning and booking with Simplifly today!
       </div>  
+      <div className='thank-you'>Thank You :)</div>
       </div>
       <Footer/>
     </div>

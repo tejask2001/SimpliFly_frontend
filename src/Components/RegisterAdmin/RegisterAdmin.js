@@ -21,6 +21,9 @@ export default function RegisterAdmin() {
 var admin={}
 
 var Register=(e)=>{
+  if(!name || !email || !phone){
+    alert("Enter all required details")
+  }
     e.preventDefault();
     admin.username=username
     admin.password=password
@@ -53,6 +56,14 @@ var Register=(e)=>{
       }
     
       function DisplayOtherDetails() {
+        if(!username || !password){
+          alert("Please enter username and password");
+          return;
+        }
+        if(password!=confirmPassword){
+          alert("Password and confirm password does not matched")
+          return;
+        }
         setDisplayOtherDetailsDiv(true);
         setDisplayUsernamePassword(false);
       }

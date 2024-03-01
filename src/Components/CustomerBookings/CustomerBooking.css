@@ -26,6 +26,11 @@ width: 100%;
     justify-content: space-between;
     background-color: rgb(149, 149, 248);
 }
+.date-seat-div{
+    display: flex;
+    justify-content: space-between;
+    margin: 4px;
+}
 
 @media (max-width: 900px) {
     .bookings-div{
