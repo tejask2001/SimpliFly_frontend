@@ -138,6 +138,7 @@ export default function Login() {
               />
             </div>
             <input type="submit" value="Login" id="login-btn" onClick={Login} />
+            <h6 className="forgot-password" onClick={()=>navigate('/updatePassword')}>forgot password</h6>
           </form>
           <p className="register-text">
             Don't have account, register as-<br/>
