@@ -70,6 +70,7 @@ export default function AddSchedule() {
     )
       .then((res) => res.json())
       .then((res) => {
+        console.log("here")
         addScheduleDetails.routeId = res;
         console.log(addScheduleDetails);
         var RequestOptions = {
@@ -92,7 +93,7 @@ export default function AddSchedule() {
           });
       })
       .catch((err) => {
-        console.log(err);
+        alert("No route found for this cities, add route first.")
       });
   };
 
@@ -114,6 +115,13 @@ export default function AddSchedule() {
   const handleDestinationAirportChange = (e) => {
     setDestinationAirport(e.target.value);
   };
+  const handleDepartureTimeChange = (e) => {
+    setDepartureTime(e.target.value);
+  };
+  const handleArrivalTimeChange = (e) => {
+    setArrivalTime(e.target.value);
+  };
+  
 
   return (
     <div className="add-schedule-div">
@@ -174,7 +182,7 @@ export default function AddSchedule() {
           <input
             type="datetime-local"
             value={departureTime}
-            onChange={(e) => setDepartureTime(e.target.value)}
+            onChange={handleDepartureTimeChange}
             min={minDateTime}
           />
         </div>
@@ -186,7 +194,7 @@ export default function AddSchedule() {
           <input
             type="datetime-local"
             value={arrivalTime}
-            onChange={(e) => setArrivalTime(e.target.value)}
+            onChange={handleArrivalTimeChange}
             min={minDateTime}
           />
         </div>

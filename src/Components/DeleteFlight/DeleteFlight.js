@@ -35,31 +35,35 @@ export default function DeleteFlight() {
         
 
     var DeleteFlightFun=(e)=>{
-        e.preventDefault()
-        console.log(flightNumber)
-
-        const params = new URLSearchParams({
-            flightNumber: flightNumber,
-          });
-        
-        const token=sessionStorage.getItem('token')
-        var RequestOption={
-            method : 'DELETE',
-            headers : {
-              'Content-Type':'application/json',
-              'Authorization':'Bearer '+token
-            }
+        const confirmDelete = window.confirm(`Are you sure you want to remove the flight?`);
+        if(confirmDelete){
+          e.preventDefault()
+          console.log(flightNumber)
+  
+          const params = new URLSearchParams({
+              flightNumber: flightNumber,
+            });
+          
+          const token=sessionStorage.getItem('token')
+          var RequestOption={
+              method : 'DELETE',
+              headers : {
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+              }
+          }
+          fetch(`http://localhost:5256/api/Flight?${params.toString()}`,RequestOption)
+              .then(res=>res.json())
+              .then(res=>{
+                  console.log(res);
+                  alert('Flight deleted successfully');
+              })
+              .catch(err => {
+                  console.error('Error:', err);
+                  alert('Error deleting flight.');
+                });
         }
-        fetch(`http://localhost:5256/api/Flight?${params.toString()}`,RequestOption)
-            .then(res=>res.json())
-            .then(res=>{
-                console.log(res);
-                alert('Flight deleted successfully');
-            })
-            .catch(err => {
-                console.error('Error:', err);
-                alert('Error deleting flight.');
-              });
+        
     }
   return (
     <div className='delete-flight-div'>

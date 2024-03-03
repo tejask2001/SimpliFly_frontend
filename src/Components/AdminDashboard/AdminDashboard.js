@@ -14,20 +14,20 @@ export default function AdminDashboard() {
     <h1>Hello {username}</h1>
   </div>
   <div className="fun-div" id="fun-div">
-    <div className="child-div">
+    <div className="child-div child-div-admin">
       <div className="owner-function" onClick={()=>navigate("/flightOwner/manageRoute")}>
         <img src="https://cdn-icons-png.freepik.com/512/4283/4283136.png" className="fun-img"/>
         <h4>Manage Route</h4>
       </div>
     </div>
-    <div className="child-div">
+    <div className="child-div child-div-admin">
       <div className="owner-function" onClick={()=>navigate("/admin/manageUser")}>
         <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" className="fun-img"/>
         <h4>Manage Users</h4>
       </div>
     </div>
-    <div className="child-div">
-      <div className="owner-function">
+    <div className="child-div child-div-admin">
+      <div className="owner-function" onClick={()=>navigate('/flightOwner/manageBooking')}>
       <img src="https://cdn-icons-png.flaticon.com/512/4406/4406665.png" className="fun-img"/>
       <h4>Manage Bookings</h4>
     </div>

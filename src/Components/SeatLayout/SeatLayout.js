@@ -74,6 +74,7 @@ export default function SeatLayout() {
   var [bookingTime, seatBookingTime] = useState(Date.now);
   var [passengersIds, setPassengers] = useState(passengerIds);
   var [paymentDetails,setPaymentDetails]=useState({'cardNumber':cardNumber,'expiryDate':expiry,'cvv':cvv})
+  var [ticketPrice, setTicketPrice] = useState(selectedFlight.totalPrice);
   var bookingDetails={}
 
   const handleCardNumberChange = (e) => {
@@ -87,12 +88,17 @@ export default function SeatLayout() {
   };
 
   function BookTicket() {
+    if(!cardNumber || !cvv || !expiry){
+      alert("Please enter card details")
+      return;
+    }
     bookingDetails.scheduleId=scheduleId;
     bookingDetails.userId=parseInt(userId);
     bookingDetails.bookingTime=new Date().toISOString();
     bookingDetails.passengerIds=passengersIds;
     bookingDetails.selectedSeats=selectedSeatNumbers;
-    bookingDetails.paymentDetails={'cardNumber':cardNumber,'expiryDate':expiry,'cvv':cvv};
+    bookingDetails.paymentDetails={'cardNumber':cardNumber,'expiryDate':expiry,'cvv':cvv};    
+    bookingDetails.price=ticketPrice;
     console.log(bookingDetails);
 
     var RequestOption = {

@@ -52,12 +52,15 @@
     width: 100%;
     background-color: yellowgreen;
 }
-.get-schedule,.add-schedule,.delete-schedule{
+.get-schedule,.add-schedule,.delete-schedule,.update-schedule{
     width: 80%;
 }
 .add-schedule{
     display: flex;
     justify-content: center;
+}
+.options-div{
+    display: none;
 }
 @media (max-width: 900px) {
     .container-main{
@@ -66,5 +69,8 @@
     }
     .get-schedule{
         width: 96%;
+    }
+    .options-div{
+        display: block;
     }
 }

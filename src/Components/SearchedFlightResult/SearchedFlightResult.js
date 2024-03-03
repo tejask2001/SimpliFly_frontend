@@ -19,6 +19,16 @@ export default function SearchedFlightResult() {
   const currentDateTime = new Date().toISOString().split('T')[0];
   var dispatch=useDispatch()
   var navigate=useNavigate()
+  var [airports, setAirports] = useState([]);
+
+  useState(() => {
+    fetch("http://localhost:5256/api/Route/GetAirports")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setAirports(res);
+      });
+  });
   
   var[dateOfJourney,setDateOfJourney]= useState(getSearchDetails.dateOfJourney);
   var[Origin,setOrigin]=useState(getSearchDetails.Origin);
@@ -93,7 +103,7 @@ export default function SearchedFlightResult() {
       airline:flight.airline
     }))
 
-    navigate('/bookingDetails')
+    navigate('/user/bookingDetails')
   }
   function getDate(date){
     const formattedDate = date.toLocaleDateString(); 
@@ -163,6 +173,7 @@ export default function SearchedFlightResult() {
             className="input-bar"
             value={Origin}
             onChange={(e) => setOrigin(e.target.value)}
+            list="itemList"
           />
         </div>
         <div className="grid">
@@ -172,7 +183,15 @@ export default function SearchedFlightResult() {
             className="input-bar"
             value={Destination}
             onChange={(e) => setDestination(e.target.value)}
+            list="itemList"
           />
+          <datalist id="itemList">
+                    {airports.map((airport)=>(
+                      <option key={airport.id} value={airport.city}>
+                      {airport.city}
+                    </option>
+                    ))}
+                  </datalist>
         </div>
         <div className="grid">
           <label><b>Departure :</b></label>
@@ -183,6 +202,13 @@ export default function SearchedFlightResult() {
             onChange={(e) => setDateOfJourney(e.target.value)}
             required min={currentDateTime}
           />
+          <datalist id="itemList">
+                    {airports.map((airport)=>(
+                      <option key={airport.id} value={airport.city}>
+                      {airport.city}
+                    </option>
+                    ))}
+                  </datalist>
         </div>
         {isRoundtrip && <div class="grid">Grid 4</div>}
         <div className="passenger-count-div grid">

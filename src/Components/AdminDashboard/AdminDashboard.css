@@ -54,9 +54,9 @@
 
 
 
-@media (max-width: 1020px) {
-    h1{
-        font-size: 30px;
+@media (max-width: 900px) {
+    .background-img h1 {
+        font-size: 3em;
     }
     #background-img{
         height: 50vh;
@@ -69,7 +69,7 @@
         margin-right: auto;
     }
     .fun-div .child-div{
-        height: 50%;
+        height: 60%;
         width: 100%;
     }
    

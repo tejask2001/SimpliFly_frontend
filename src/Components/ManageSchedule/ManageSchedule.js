@@ -3,6 +3,7 @@ import './ManageSchedule.css'
 import GetSchedule from '../GetSchedule/GetSchedule'
 import AddSchedule from '../AddSchedule/AddSchedule';
 import DeleteSchedule from '../DeleteSchedule/DeleteSchedule';
+import UpdateSchedule from '../UpdateSchedule/UpdateSchedule';
 
 export default function ManageSchedule() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -63,7 +64,7 @@ export default function ManageSchedule() {
                 <GetSchedule/>
             </div>}
             {updateSchedule && <div className="update-schedule">
-
+<UpdateSchedule/>
             </div>}
             {deleteSchedule && <div className="delete-schedule">
 <DeleteSchedule/>

@@ -19,6 +19,25 @@ export default function GetUser() {
           });
       });
 
+      const token=sessionStorage.getItem('token')
+      function DeleteUser(username){
+        const confirmDelete = window.confirm(`Are you sure you want to delete user ${username}?`);
+        if(confirmDelete){
+          var RequestOptions = {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" ,
+            'Authorization':'Bearer '+token},
+          };
+  
+          fetch(`http://localhost:5256/api/admin/dashboard/DeleteUserByUsername?username=${username}`,RequestOptions)
+          .then((res)=>res.json)
+          .then((res)=>{console.log(res)})
+          .catch((err) => {
+            alert("Something went wrong");
+          });
+        }        
+      }
+
   return (
     <div className='getuser-div'> 
       <div className='get-user-div'>
@@ -28,7 +47,7 @@ export default function GetUser() {
             <div className='user-gender-div user-row'><p>Gender : </p>{user.gender}</div>            
             <div className='user-email-div user-row'><p>Email : </p>{user.email}</div>
             <div className='user-phone-div user-row'><p>Phone : </p>{user.phone}</div>
-            <div className='delete-user-btn'>X</div>
+            <div className='delete-user-btn' onClick={()=>DeleteUser(user.username)}>X</div>
         </div>))}
       </div>
     </div>

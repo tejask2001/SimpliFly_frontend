@@ -136,7 +136,7 @@ export default function BookingDetails() {
           })
         );
         console.log(passengerIds);
-        navigate("/seatBooking");
+        navigate("/user/seatBooking");
       })
       .catch((error) => {
         console.error("Error occured", error);

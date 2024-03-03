@@ -17,6 +17,7 @@ export default function HomeComponent() {
   var navigate=useNavigate()
   var dispatch = useDispatch();
     
+  var [airports, setAirports] = useState([]);
   var[dateOfJourney,setDateOfJourney]= useState(new Date());
   var[Origin,setOrigin]=useState('');
   var[Destination,setDestination]=useState('');
@@ -95,6 +96,15 @@ export default function HomeComponent() {
       setIsRoundtrip(e.target.id === 'roundtrip');
     };
 
+    useState(() => {
+      fetch("http://localhost:5256/api/Route/GetAirports")
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          setAirports(res);
+        });
+    });
+
   return (
     <div>
       <div className="home-main">
@@ -129,8 +139,16 @@ export default function HomeComponent() {
                     onChange={(e)=>setOrigin(e.target.value)}
                     placeholder="City or airport"
                     id="departure"
+                    list="itemList"
                     required
                   />
+                  <datalist id="itemList">
+                    {airports.map((airport)=>(
+                      <option key={airport.id} value={airport.city}>
+                      {airport.city}
+                    </option>
+                    ))}
+                  </datalist>
                 </div>
                 <div className="arrival-div">
                   <label htmlFor="arrival">Flying to</label>
@@ -141,8 +159,16 @@ export default function HomeComponent() {
                     onChange={(e)=>setDestination(e.target.value)}
                     placeholder="City or airport"
                     id="arrival"
+                    list="itemList"
                     required
                   />
+                  <datalist id="itemList">
+                    {airports.map((airport)=>(
+                      <option key={airport.id} value={airport.city}>
+                      {airport.city}
+                    </option>
+                    ))}
+                  </datalist>
                 </div>
               </div>
               <div className="depart-date-div">

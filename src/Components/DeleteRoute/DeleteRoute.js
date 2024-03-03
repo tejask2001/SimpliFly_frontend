@@ -8,31 +8,35 @@ export default function DeleteRoute() {
   var routeDetail = {};
 
   var DeleteFlightRoute=(e)=>{
-    e.preventDefault();
-    routeDetail.sourceAirportId = parseInt(sourceAirport);
-    routeDetail.destinationAirportId = parseInt(destinationAirport);
-    console.log(routeDetail);
-
-    const token=sessionStorage.getItem('token')
-
-    var RequestOption={
-      method : 'DELETE',
-      headers : {
-        'Content-type':'application/json',
-        'Authorization':'Bearer '+token
-      },
-      body : JSON.stringify(routeDetail)
+    const confirmDelete = window.confirm(`Are you sure you want to remove the flight?`);
+    if(confirmDelete){
+      e.preventDefault();
+      routeDetail.sourceAirportId = parseInt(sourceAirport);
+      routeDetail.destinationAirportId = parseInt(destinationAirport);
+      console.log(routeDetail);
+  
+      const token=sessionStorage.getItem('token')
+  
+      var RequestOption={
+        method : 'DELETE',
+        headers : {
+          'Content-type':'application/json',
+          'Authorization':'Bearer '+token
+        },
+        body : JSON.stringify(routeDetail)
+      }
+      fetch("http://localhost:5256/api/Route",RequestOption)
+      .then(res => res.json())
+      .then(res => {
+        console.log('Response:', res);
+        alert('Route deleted successfully');
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        alert('No Such Route Present');
+      });
     }
-    fetch("http://localhost:5256/api/Route",RequestOption)
-    .then(res => res.json())
-    .then(res => {
-      console.log('Response:', res);
-      alert('Route deleted successfully');
-    })
-    .catch(err => {
-      console.error('Error:', err);
-      alert('No Such Route Present');
-    });
+    
   }
 
   useState(() => {

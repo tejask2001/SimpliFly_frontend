@@ -40,9 +40,11 @@ function App() {
           <Route path="register" element={<RegisterFlightOwner />} />
           <Route path="navMenu" element={<NavMenu />} />
           <Route path="searchFlightResult" element={<SearchedFlightResult />} />
-          <Route path="bookingDetails" element={<BookingDetails />} />
-          <Route path="seatBooking" element={<SeatLayout/>}/>
-          <Route path="userAccount" element={<UserAccount/>}/>
+          <Route path="user/" element={<PrivateRoute/>}>
+            <Route path="bookingDetails" element={<BookingDetails />} />
+            <Route path="seatBooking" element={<SeatLayout/>}/>
+            <Route path="userAccount" element={<UserAccount/>}/>
+          </Route>
           <Route path="*" element={<Error />} />
         </Route>
         <Route path="/flightOwner/" element={<PrivateRoute />}>

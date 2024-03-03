@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './GetSchedule.css'
 import axios from 'axios'
 import indigo from "../../Assets/Images/indigo.png";
@@ -15,19 +15,19 @@ export default function GetSchedule() {
       return { formattedDate, formattedTime };
     }
 
-    var Schedules = ()=>{
+    useEffect(()=>{
       const token=sessionStorage.getItem('token')
-    const httpHeader={
-      headers:{'Authorization':'Bearer '+token}
-  }
-      axios.get("http://localhost:5256/api/Schedule",httpHeader)
-                .then(function(response){
-                    setSchedules(response.data)
-                })
-                .catch(function(err){
-                    console.log(err)
-                })
-              }
+      const httpHeader={
+        headers:{'Authorization':'Bearer '+token}
+    }
+        axios.get("http://localhost:5256/api/Schedule",httpHeader)
+                  .then(function(response){
+                      setSchedules(response.data)
+                  })
+                  .catch(function(err){
+                      console.log(err)
+                  })
+    })
 
               const getAirlineImage = (airline) => {
                 airline = airline.toLowerCase();
@@ -46,7 +46,6 @@ export default function GetSchedule() {
   return (
     <div>
       <div className='schedule-div'>        
-        <button onClick={Schedules} className='get-schedule-btn'>Getdata</button>
         {schedules.map((schedule,index)=>
         <div key={index} className='schedule-list-div'>
           <div className='schedule-flight-detail'>

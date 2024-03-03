@@ -25,6 +25,18 @@ function Navbar(){
         navbarMenu.style.display="none";
     }
 
+    function Home(){
+      if(sessionStorage.getItem('role')==='admin'){
+        navigate("/admin/home");
+      }
+      else if (sessionStorage.getItem("role") == "flightOwner") {
+        navigate("/flightOwner/home");
+      }
+      else{
+        navigate('/home')
+      }
+    }
+
     var Logout=()=>{
       sessionStorage.removeItem("username")
       sessionStorage.removeItem("role")
@@ -42,7 +54,7 @@ function Navbar(){
           </a>
           <ul className="navbar-nav nav-links">
             <li className="nav-item">
-              <Link  className="nav-link" to="/home">Home</Link>
+              <a  className="nav-link home-btn" onClick={Home}>Home</a>
             </li>
             <li className="nav-item">
               <Link  className="nav-link" to="/about">About</Link>
@@ -51,7 +63,7 @@ function Navbar(){
               <Link  className="nav-link" to="/login">Login</Link>
             </li>)}
             {isLoggedIn && (<li className="nav-item">
-            <Link  className="nav-link" to="/userAccount">Account</Link>
+            <Link  className="nav-link" to="/user/userAccount">Account</Link>
             </li>)}
             {isLoggedIn && (<li className="nav-item">
               <a className="nav-link logout-btn" onClick={Logout}>Logout</a>

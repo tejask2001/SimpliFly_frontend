@@ -20,9 +20,25 @@ export default function GetFlightOwner() {
           });
       });
 
-    var DeleteFlightOwner=()=>{
-        
-    }
+      const token=sessionStorage.getItem('token')
+      function DeleteFlightOwner(username){
+        const confirmDelete = window.confirm(`Are you sure you want to delete user ${username}?`);
+        if(confirmDelete){
+          var RequestOptions = {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" ,
+            'Authorization':'Bearer '+token},
+          };
+  
+          fetch(`http://localhost:5256/api/admin/dashboard/DeleteUserByUsername?username=${username}`,RequestOptions)
+          .then((res)=>res.json)
+          .then((res)=>{console.log(res)})
+          .catch((err) => {
+            alert("Something went wrong");
+          });
+        }        
+      }
+
   return (
     <div className='getflightOwner-div'>
       <div className='get-flightOwner-div'>
@@ -32,7 +48,7 @@ export default function GetFlightOwner() {
             <div className='user-email-div flightOwner-row'><p>Email : </p>{user.email}</div>
             <div className='user-phone-div flightOwner-row'><p>Phone : </p>{user.contactNumber}</div>
             <div className='user-gender-div flightOwner-row'><p>Company Name : </p>{user.companyName}</div> 
-            <div className='delete-user-btn' onClick={DeleteFlightOwner}>X</div>
+            <div className='delete-user-btn' onClick={()=>{DeleteFlightOwner(user.username)}}>X</div>
         </div>))}
       </div>
     </div>

@@ -178,7 +178,7 @@ export default function DeleteSchedule() {
 
               <div className="destination-airport-div airport-select-div">
                 <label htmlFor="destination-airport">
-                  <b>Destination Airport : </b>
+                  <b>Airport : </b>
                 </label>
                 <select
                   className="select-destination-airport"
