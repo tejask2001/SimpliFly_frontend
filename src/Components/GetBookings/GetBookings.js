@@ -19,8 +19,9 @@ export default function GetBookings() {
         "http://localhost:5256/api/admin/dashboard/Bookings/Allbookings",
         httpHeader
       )
-      .then(function (response) {
-        setBooking(response.data);
+      .then(function (response) {        
+        const sortBookings = response.data.sort((a, b) => new Date(b.bookingTime) - new Date(a.bookingTime));
+        setBooking(sortBookings);
         console.log(response.data);
       })
       .catch(function (error) {
@@ -71,6 +72,20 @@ export default function GetBookings() {
       (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
     );
     return hours + ":" + minutes + " hours";
+  }
+
+  function CancelBooking(bookingId,userId){
+    var RequestOptions={
+      method : 'Delete',
+      headers : {'Content-Type':'Application/json',
+      'Authorization':'Bearer '+token},
+    }
+    fetch(`http://localhost:5256/api/users/${userId}/bookings/${bookingId}`,RequestOptions)
+      .then(res=>res.json)
+      .then(alert("Booking deleted successfully"))
+      .catch((err)=>{
+        alert(err)
+      })
   }
 
   const getAirlineImage = (airline) => {
@@ -129,6 +144,8 @@ export default function GetBookings() {
                   {getDate(new Date(booking.schedule.arrival)).formattedTime}
                 </p>
               </div>
+              
+            <div className='delete-user-btn' onClick={()=>CancelBooking(booking.id,booking.userId)}>X</div>
             </div>
             <div className="booking-passenger-details">
               <div>

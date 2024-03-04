@@ -4,6 +4,7 @@ import "./UserAccount.css";
 import CustomerBooking from "../CustomerBookings/CustomerBooking";
 import rightArrow from '../../Assets/Images/right-arrow.png'
 import leftArrow from '../../Assets/Images/left-arrow.png'
+import CustomerBookingHistory from "../CustomerBookings/CustomerBookingHistory";
 
 export default function UserAccount() {
   var [profile, setProfile] = useState(true);
@@ -75,7 +76,7 @@ export default function UserAccount() {
             </div>
           )}
           {bookings && <div className="get-bookings"><CustomerBooking/></div>}
-          {bookings && <div className="get-flightOwner"></div>}
+          {bookingsHistory && <div className="get-bookings-history"><CustomerBookingHistory/></div>}
         </div>
       </div>
     </div>

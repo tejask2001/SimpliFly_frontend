@@ -35,6 +35,10 @@ export default function DeleteFlight() {
         
 
     var DeleteFlightFun=(e)=>{
+      if(!flightNumber){
+        alert("Please select flight number")
+        return
+      }
         const confirmDelete = window.confirm(`Are you sure you want to remove the flight?`);
         if(confirmDelete){
           e.preventDefault()

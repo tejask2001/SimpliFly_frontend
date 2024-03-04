@@ -54,3 +54,13 @@
 .update-flight{
     height: 50%;
 }
+
+@media (max-width: 900px) {
+    #manage-flight-sidebar{
+        display: none;
+        width: 100%;
+    }
+    .get-flight,.add-flight,.update-flight,.delete-flight{
+        width: 100%;
+    }
+}

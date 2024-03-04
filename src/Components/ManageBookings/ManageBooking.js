@@ -9,7 +9,7 @@ export default function ManageBooking() {
   return (
     <div>
       <div className="container-body">
-        <div className="sidebar">
+        <div className="sidebar manage-booking-sidebar">
             <div className="sidebar-container">
             <div className="sidebar-options booking-btn-div" onClick={()=>{
               setBooking(true);

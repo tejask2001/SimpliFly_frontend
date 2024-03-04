@@ -4,18 +4,19 @@ import indigo from "../../Assets/Images/indigo.png";
 import airIndia from "../../Assets/Images/airindia.png";
 import vistara from "../../Assets/Images/vistara.png";
 
-export default function CustomerBooking() {
-  var [bookings,setBookings]=useState([])
+
+export default function CustomerBookingHistory() {
+    var [bookings,setBookings]=useState([])
   var userId=sessionStorage.getItem("userId")
   
   useState(() => {
     fetch(`http://localhost:5256/api/users/GetBookingByCustomerId?customerId=${userId}`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);        
-        const pastBookings = res.filter(a => new Date(a.booking.schedule.departure) > new Date());
-        const sortedBookings = pastBookings.sort((a, b) => new Date(b.booking.bookingTime) - new Date(a.booking.bookingTime));
-        setBookings(sortedBookings);
+        console.log(res);
+        setBookings(res);
+        const pastBookings = res.filter(a => new Date(a.booking.schedule.departure) < new Date());
+        setBookings(pastBookings)
       });
   });
 
@@ -47,9 +48,9 @@ export default function CustomerBooking() {
         return indigo;
     }
   };
-
+    
   return (
-    <div className='bookings-div'>
+      <div className='bookings-div'>
       <div className='get-bookings-div'>
         {bookings.map((booking, index) => (
         <div key={index} className="booking-list-div">

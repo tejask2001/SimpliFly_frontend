@@ -20,3 +20,16 @@
 .add-flight-btn:hover{
     background-color: rgb(173, 208, 239);
 }
+
+
+@media (max-width: 900px) {
+.add-flight-div{
+    width: 100%;
+}
+.add-flight-btn{
+    width: 40%;
+}
+.flight-detail-div{
+    width: 96%;
+}
+}

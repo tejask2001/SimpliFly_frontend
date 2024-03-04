@@ -1,7 +1,7 @@
 .get-User{
     margin-left: 20%;
 }
-.get-bookings{
+.get-bookings,.get-bookings-history{
     width: 100%;
     display: flex;
     justify-content: center;

@@ -166,7 +166,7 @@ export default function DeleteSchedule() {
             <form>
               <div className="date-div">
                 <label htmlFor="departure-time">
-                  <b>Departure Time : </b>
+                  <b>Departure Date : </b>
                 </label>
                 <input
                   type="date"

@@ -43,6 +43,10 @@ export default function UpdateFlight() {
       };
 
     var UpdateFlightAirline=(e)=>{
+      if(!flightNumber || !airline){
+        alert("Please enter the required details")
+        return
+      }
         e.preventDefault();
         updateAirlineDetail.flightNumber=flightNumber;
         updateAirlineDetail.airline=airline;
@@ -70,6 +74,10 @@ export default function UpdateFlight() {
     }
 
     var UpdateFlightSeats=(e)=>{
+      if(!flightNumber || !seats){
+        alert("Please enter the required details")
+        return
+      }
         e.preventDefault();
         updateSeatsDetail.flightNumber=flightNumber;
         updateSeatsDetail.totalSeats=parseInt(seats);
