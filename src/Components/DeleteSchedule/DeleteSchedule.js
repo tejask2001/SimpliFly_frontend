@@ -33,63 +33,70 @@ export default function DeleteSchedule() {
   }, []);
 
   var DeleteFligtSchedule = (e) => {
-    e.preventDefault();
-    console.log(flightNumber);
-
-    const params = new URLSearchParams({
-      flightNumber: flightNumber,
-    });
-
-    const token = sessionStorage.getItem("token");
-    var RequestOption = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization':'Bearer '+token
-      },
-    };
-    fetch(
-      `http://localhost:5256/api/Schedule/DeleteScheduleByFlight?${params.toString()}`,
-      RequestOption
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        alert("Schedule deleted successfully");
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-        alert("Error deleting Schedule.");
-      });
+    const confirmDelete = window.confirm(`Are you sure you want to remove the schedule?`);
+        if(confirmDelete){
+          e.preventDefault();
+          console.log(flightNumber);
+      
+          const params = new URLSearchParams({
+            flightNumber: flightNumber,
+          });
+      
+          const token = sessionStorage.getItem("token");
+          var RequestOption = {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              'Authorization':'Bearer '+token
+            },
+          };
+          fetch(
+            `http://localhost:5256/api/Schedule/DeleteScheduleByFlight?${params.toString()}`,
+            RequestOption
+          )
+            .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
+              alert("Schedule deleted successfully");
+            })
+            .catch((err) => {
+              console.error("Error:", err);
+              alert("Error deleting Schedule.");
+            });
+        }
+    
   };
   var deleteDateScheduleData={}
 
   var DeleteDateSchedule = (e) => {
-    deleteDateScheduleData.dateOfSchedule=date
-    deleteDateScheduleData.airportId=airport
-
-    const token = sessionStorage.getItem("token");
-    var RequestOption = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization':'Bearer '+token,
-      },
-      body : JSON.stringify(deleteDateScheduleData)
-    };
-    fetch(
-      `http://localhost:5256/api/Schedule/DeleteScheduleByDate`,
-      RequestOption
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        alert("Schedule deleted successfully");
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-        alert("Error deleting Schedule.");
-      });
+    const confirmDelete = window.confirm(`Are you sure you want to remove the schedule?`);
+        if(confirmDelete){
+          deleteDateScheduleData.dateOfSchedule=date
+          deleteDateScheduleData.airportId=airport
+      
+          const token = sessionStorage.getItem("token");
+          var RequestOption = {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              'Authorization':'Bearer '+token,
+            },
+            body : JSON.stringify(deleteDateScheduleData)
+          };
+          fetch(
+            `http://localhost:5256/api/Schedule/DeleteScheduleByDate`,
+            RequestOption
+          )
+            .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
+              alert("Schedule deleted successfully");
+            })
+            .catch((err) => {
+              console.error("Error:", err);
+              alert("Error deleting Schedule.");
+            });
+        }   
     
   };
 

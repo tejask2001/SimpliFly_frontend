@@ -40,7 +40,7 @@ export default function AddFlight() {
     })
     .catch(err => {
       console.error('Error:', err);
-      alert('Error adding flight. Check console for details.');
+      alert('Flight Already Exists');
     });
   }
 

@@ -93,6 +93,10 @@ export default function UpdateSchedule() {
 
 
   function UpdateScheduleFlight(){
+    if(!flightNumber){
+      alert("Select Flight")
+      return 
+    }
     var updateDetails={}
     updateDetails.scheduleId=scheduleId
     updateDetails.flightNumber=flightNumber
@@ -113,6 +117,10 @@ export default function UpdateSchedule() {
   }
 
   function UpdateScheduleDate(){
+    if(departureTime==arrivalTime){
+      alert("Departure and arrival time cannot be same")
+      return
+    }
     var updateDetails={}
     updateDetails.scheduleId=scheduleId
     updateDetails.departureTime=departureTime

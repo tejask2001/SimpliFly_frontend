@@ -34,7 +34,7 @@ export default function AddRoute() {
     })
     .catch(err => {
       console.error('Error:', err);
-      alert('Error adding Route.');
+      alert('Route already present');
     });
 
   };

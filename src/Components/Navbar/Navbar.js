@@ -38,11 +38,15 @@ function Navbar(){
     }
 
     var Logout=()=>{
-      sessionStorage.removeItem("username")
-      sessionStorage.removeItem("role")
-      sessionStorage.removeItem("userId")
-      sessionStorage.removeItem("token")
-      navigate('/')
+      const confirmDelete = window.confirm(`Are you sure you want to Logout?`);
+        if(confirmDelete){
+          sessionStorage.removeItem("username")
+          sessionStorage.removeItem("role")
+          sessionStorage.removeItem("userId")
+          sessionStorage.removeItem("token")
+          navigate('/')
+        }
+      
     }
 
     return(

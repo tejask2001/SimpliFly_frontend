@@ -34,6 +34,35 @@ export default function CustomerBooking() {
     return hours+":"+minutes+" hours"
   }
 
+
+  function CancelBooking(passengerBookingId){
+    const confirmDelete = window.confirm(`Are you sure you want to cancel booking?`);
+        if(confirmDelete){
+        
+          const token=sessionStorage.getItem('token')
+          var RequestOption={
+              method : 'DELETE',
+              headers : {
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+              }
+            }
+
+            fetch(`http://localhost:5256/api/users/CancelBookingByPassenger?passengerId=${passengerBookingId}`,RequestOption)
+              .then(res=>res.json())
+              .then(res=>{
+                  console.log(res);
+                  alert('Booking cancelled successfully');
+              })
+              .catch(err => {
+                  console.error('Error:', err);
+                  alert('Error canceling booking.');
+                });
+
+        }
+console.log(passengerBookingId);
+  }
+
   const getAirlineImage = (airline) => {
     airline = airline.toLowerCase();
     switch (airline) {
@@ -73,6 +102,7 @@ export default function CustomerBooking() {
             <p className="flight-details">{booking.booking.schedule.route.destinationAirport.city}</p>
             <p className="flight-details">{getDate(new Date(booking.booking.schedule.arrival)).formattedTime}</p>
             </div>
+            <div className='delete-user-btn' onClick={()=>CancelBooking(booking.id)}>X</div>
             </div>
             <div className='date-seat-div'>
               <div>Departure Date : <b>{getDate(new Date(booking.booking.schedule.departure)).formattedDate}</b></div>

@@ -7,7 +7,25 @@
 .seat-color-div{
     width: 25%;
     height: 100%;
-    background-color: slategray;
+    background-color: rgb(197, 226, 244);
+}
+.seat-availability{
+  margin-left: 15%;
+  margin-top: 5%;
+  font-weight: bold;
+}
+.booked-seats,.avilable-seats,.selected-seats{
+  height: 20px;
+  width: 20px;
+  border-radius: 8px;
+  background-color: aqua;
+  color: white;
+}
+.booked-seats{
+  border: solid 4px red;
+}
+.selected-seats{
+  border: solid 4px rgb(121, 184, 26);
 }
 .seat-layout-div{
     width: 55%;
@@ -51,8 +69,9 @@
 .passage{
     height: 90%;
     width: 1%;
-    background-color: rgb(160, 159, 159);
+    background-color: rgb(1, 91, 130);
     position: absolute;
+    left: 41.2%;
 }
 .booked {
     background-color: red; 

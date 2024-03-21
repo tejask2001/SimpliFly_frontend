@@ -8,7 +8,7 @@ export default function DeleteRoute() {
   var routeDetail = {};
 
   var DeleteFlightRoute=(e)=>{
-    const confirmDelete = window.confirm(`Are you sure you want to remove the flight?`);
+    const confirmDelete = window.confirm(`Are you sure you want to remove the route?`);
     if(confirmDelete){
       e.preventDefault();
       routeDetail.sourceAirportId = parseInt(sourceAirport);

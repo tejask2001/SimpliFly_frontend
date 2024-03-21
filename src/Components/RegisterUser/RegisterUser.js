@@ -25,6 +25,7 @@ export default function RegisterUser() {
     if(!name || !email || !phone){
       alert("Enter all required details")
     }
+    
 e.preventDefault();
 user.username=username;
 user.password=password;
@@ -47,7 +48,8 @@ var RequestOption ={
         console.log(res)
         setRegisterMessage(true)
       })
-      .catch(err=>{console.log(err)})
+      .catch(err=>{console.log(err)
+        alert("User already present")})
   }
 
   function DisplayUsernamePassword() {
@@ -63,6 +65,10 @@ var RequestOption ={
     if(password!=confirmPassword){
       alert("Password and confirm password does not matched")
       return;
+    }
+    if(password.length<6){
+      alert("Password must be more than 6 character")
+      return
     }
     setDisplayOtherDetailsDiv(true);
     setDisplayUsernamePassword(false);

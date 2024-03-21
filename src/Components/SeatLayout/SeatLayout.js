@@ -25,6 +25,10 @@ export default function SeatLayout() {
         setSelectedSeatNumbers(updatedSelectedSeats);
         return;
       } else {
+        if(selectedSeatNumbers.length+1>passengersIds.length){
+          alert(`You can select only ${passengerIds.length} seats.`)
+          return
+        }
         setSelectedSeatNumbers([...selectedSeatNumbers, seatNumber]);
       }
     }
@@ -123,22 +127,28 @@ export default function SeatLayout() {
   }
   return (
     <div className="seat-layout">
-      <div className="seat-color-div"></div>
+      <div className="seat-color-div">
+        <div className="seat-availability">
+        <div><p className="booked-seats"></p>Booked Seats</div>
+        <div><p className="avilable-seats"></p>Available Seats</div>
+        <div><p className="selected-seats"></p>Selected Seats</div>
+        </div>
+      </div>
       <div className="seat-layout-div">
         <div className="seat-selection">
           <div className="seat-arrangement">
             {seats.map((seat, index) => (
               <div
-                key={index}
-                className={`flight ${
-                  bookedSeats.includes(seat.seatNumber) ? "booked" : ""
-                }  ${
-                  selectedSeatNumbers.includes(seat.seatNumber)
-                    ? "selected"
-                    : ""
-                }`}
-                onClick={() => SelectSeat(seat.seatNumber)}
-              >
+              key={index}
+              className={`flight ${
+                bookedSeats.includes(seat.seatNumber) ? "booked" : ""
+              }  ${
+                selectedSeatNumbers.includes(seat.seatNumber)
+                  ? "selected"
+                  : ""
+              }`}
+              onClick={() => SelectSeat(seat.seatNumber)}
+            >
                 <div id="seats"> {seat.seatNumber}</div>
               </div>
             ))}

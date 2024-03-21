@@ -48,7 +48,8 @@ export default function RegisterFlightOwner() {
         console.log(res)
         setRegisterMessage(true)
       })
-      .catch(err=>{console.log(err)})
+      .catch(err=>{console.log(err)
+        alert("User already present")})
   }
 
 

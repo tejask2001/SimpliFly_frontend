@@ -47,7 +47,8 @@ var Register=(e)=>{
             console.log(res)
             setRegisterMessage(true)
           })
-          .catch(err=>{console.log(err)})
+          .catch(err=>{console.log(err)
+          alert("User already present")})
       }
 
       function DisplayUsernamePassword() {
