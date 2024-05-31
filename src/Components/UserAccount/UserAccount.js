@@ -5,16 +5,16 @@ import CustomerBooking from "../CustomerBookings/CustomerBooking";
 import rightArrow from '../../Assets/Images/right-arrow.png'
 import leftArrow from '../../Assets/Images/left-arrow.png'
 import CustomerBookingHistory from "../CustomerBookings/CustomerBookingHistory";
+import CustomerCancelledBooking from "../CustomerCancelledBooking/CustomerCancelledBooking";
 
 export default function UserAccount() {
   var [profile, setProfile] = useState(true);
   var [bookings, setBookings] = useState(false);
   var [bookingsHistory, setBookingHistory] = useState(false);
+  var [cancelledBooking, setCancelledBooking] = useState(false);
   var userRole = sessionStorage.getItem("role");
 
   var [isCustomer, setIsCustomer] = useState(userRole=="customer");
-  var [isFlightOwner, setIsFlightOwner] = useState(userRole=="flightOwner");
-  var [isAdmin, setIsAdmin] = useState(userRole=="admin");
 
   function DisplayOptions(){
     var sidebar=document.getElementById('account-sidebar');
@@ -41,6 +41,7 @@ export default function UserAccount() {
                 setProfile(true);
                 setBookings(false);
                 setBookingHistory(false);
+                setCancelledBooking(false);
               }}
             >
               Profile
@@ -52,19 +53,32 @@ export default function UserAccount() {
                 setProfile(false);
                 setBookings(true);
                 setBookingHistory(false);
+                setCancelledBooking(false);
               }}
             >
               Bookings
             </div>}
             {isCustomer && <div
-              className="sidebar-option"
+              className="sidebar-option booking-history-btn"
               onClick={() => {
                 setProfile(false);
                 setBookings(false);
                 setBookingHistory(true);
+                setCancelledBooking(false);
               }}
             >
               Bookings History
+            </div>}
+            {isCustomer && <div
+              className="sidebar-option cancelled-booking-btn"
+              onClick={() => {
+                setProfile(false);
+                setBookings(false);
+                setBookingHistory(false);
+                setCancelledBooking(true);
+              }}
+            >
+              Cancelled Booking
             </div>}
           </div>
         </div>
@@ -77,6 +91,7 @@ export default function UserAccount() {
           )}
           {bookings && <div className="get-bookings"><CustomerBooking/></div>}
           {bookingsHistory && <div className="get-bookings-history"><CustomerBookingHistory/></div>}
+          {cancelledBooking && <div className="get-cancelled-booking"><CustomerCancelledBooking/></div>}
         </div>
       </div>
     </div>

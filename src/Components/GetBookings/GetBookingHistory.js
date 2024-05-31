@@ -5,7 +5,7 @@ import indigo from "../../Assets/Images/indigo.png";
 import airIndia from "../../Assets/Images/airindia.png";
 import vistara from "../../Assets/Images/vistara.png";
 
-export default function GetBookings() {
+export default function GetBookingHistory() {
   var [bookings, setBooking] = useState([]);
   var userId = sessionStorage.getItem("userId");
   const token = sessionStorage.getItem("token");
@@ -19,9 +19,9 @@ export default function GetBookings() {
         "http://localhost:5256/api/admin/dashboard/Bookings/Allbookings",
         httpHeader
       )
-      .then(function (response) {  
+      .then(function (response) {        
         const sortBookings = response.data.sort((a, b) => new Date(b.bookingTime) - new Date(a.bookingTime));
-        const pastBookings = sortBookings.filter(a => new Date(a.schedule.departure) > new Date());
+        const pastBookings = sortBookings.filter(a => new Date(a.schedule.departure) < new Date());
         setBooking(pastBookings);
         console.log(response.data);
       })
@@ -76,34 +76,17 @@ export default function GetBookings() {
   }
 
   function CancelBooking(bookingId,userId){
-    console.log(bookingId)
-    const confirmDelete = window.confirm(
-      `Are you sure you want to cancel booking?`
-    );
-    if (confirmDelete) {
-      const token = sessionStorage.getItem("token");
-      var RequestOption = {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-      };
-
-      fetch(
-        `http://localhost:5256/api/Bookings/CancelBooking?bookingId=${bookingId}`,
-        RequestOption
-      )
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          alert("Booking cancelled successfully");
-        })
-        .catch((err) => {
-          console.error("Error:", err);
-          alert("Error canceling booking.");
-        });
+    var RequestOptions={
+      method : 'Delete',
+      headers : {'Content-Type':'Application/json',
+      'Authorization':'Bearer '+token},
     }
+    fetch(`http://localhost:5256/api/users/${userId}/bookings/${bookingId}`,RequestOptions)
+      .then(res=>res.json)
+      .then(alert("Booking deleted successfully"))
+      .catch((err)=>{
+        alert(err)
+      })
   }
 
   const getAirlineImage = (airline) => {
@@ -163,7 +146,6 @@ export default function GetBookings() {
                 </p>
               </div>
               
-            <div className='delete-user-btn' onClick={()=>CancelBooking(booking.id,booking.userId)}>X</div>
             </div>
             <div className="booking-passenger-details">
               <div>

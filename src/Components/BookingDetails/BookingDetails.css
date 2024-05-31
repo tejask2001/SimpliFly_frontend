@@ -7,10 +7,11 @@
   align-items: center;
 }
 .booking-details-page .available-flights-div{
-    height: 15%;
+    height: 18%;
     width: 60%;
     display: flex;
     justify-content: space-around;
+    box-shadow: 2px 2px 6px rgb(98, 97, 97);
     align-items: center;
 }
 .selected-flight-detail{

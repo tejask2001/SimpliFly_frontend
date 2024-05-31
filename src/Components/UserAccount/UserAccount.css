@@ -1,7 +1,7 @@
 .get-User{
     margin-left: 20%;
 }
-.get-bookings,.get-bookings-history{
+.get-bookings,.get-bookings-history,.get-cancelled-booking{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -12,6 +12,10 @@
 .get-User-div{
     width: 70%;
 }
+.cancelled-booking-btn,.booking-history-btn{
+    text-align: center;
+}
+
 @media (max-width: 900px) {
 .account-sidebar{
     display: none;

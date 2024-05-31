@@ -1,0 +1,48 @@
+.cancelled-booking-div {
+    margin-top: 20px;
+    width: 90%;
+    overflow-x: auto;
+}
+
+.cancel-table {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 10px;
+    border: solid rgb(170, 220, 252);
+}
+
+.cancel-table th, .cancel-table td {
+    padding: 8px;
+    text-align: left;
+    text-align: center;
+}
+
+.cancel-table th {
+    background-color: #c5e9fe;
+}
+
+.cancel-table tbody tr:nth-child(even) {
+    background-color: #ddf2fd;
+}
+
+.cancel-table tbody tr:hover {
+    background-color: #c6e8fd;
+}
+.refund-btn{
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+.refund-btn:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgb(54, 54, 54);
+}
+.pending{
+    background-color: rgb(248, 176, 176);
+}
+.request-sent{
+    background-color: yellow;
+}
+.amount-refunded{
+    background-color: rgb(171, 242, 138);
+}

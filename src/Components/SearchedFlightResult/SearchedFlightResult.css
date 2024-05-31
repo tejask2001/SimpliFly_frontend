@@ -60,18 +60,21 @@
     background-color: rgb(173, 208, 239);
 }
 .available-flights-div{
-  box-shadow: 2px 2px 14px rgb(118, 111, 111);
   width: 65%;
   margin: 5px;
   border-radius: 6px;
   padding: 15px;
 }
 .key-div{
-  height: 100%;
+  height: 80%;
   width: 100%;
+  margin-top: 10px;
+  padding: 2px;
 display: flex;
 justify-content: space-between;
 align-items: center;
+box-shadow: 2px 2px 6px rgb(98, 97, 97);
+border-radius: 5px;
 }
 .available-flight-detail{
   display: flex;
