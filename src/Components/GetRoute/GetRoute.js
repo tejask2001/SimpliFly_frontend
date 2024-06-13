@@ -11,7 +11,7 @@ export default function GetRoute() {
     const httpHeader={
       headers:{'Authorization':'Bearer '+token}
   }
-      axios.get("http://localhost:5256/api/Route",httpHeader)
+      axios.get("http://localhost:13304/api/Route",httpHeader)
                     .then(function(response){
                         setRoutes(response.data)
                         console.log(response.data)

@@ -41,7 +41,7 @@ var Register=(e)=>{
         body : JSON.stringify(admin)
       }
     
-      fetch("http://localhost:5256/api/User/RegisterAdmin",RequestOption)
+      fetch("http://localhost:13304/api/User/RegisterAdmin",RequestOption)
           .then(res=>res.json())
           .then(res=>{
             console.log(res)

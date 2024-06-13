@@ -5,7 +5,7 @@ export default function RefundRequest() {
     var [refundRequest,setRefundRequest]=useState([])
 
     useEffect(()=>{
-        fetch(`http://localhost:5256/api/Bookings/GetRefundRequest`)
+        fetch(`http://localhost:13304/api/Bookings/GetRefundRequest`)
         .then((res)=>res.json())
         .then((res)=>{
             setRefundRequest(res);
@@ -30,7 +30,7 @@ export default function RefundRequest() {
         };
   
         fetch(
-          `http://localhost:5256/api/Bookings/ChangeRefundStatus?id=${id}`,
+          `http://localhost:13304/api/Bookings/ChangeRefundStatus?id=${id}`,
           RequestOption
         )
           .then((res) => res.json())

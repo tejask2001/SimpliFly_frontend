@@ -24,7 +24,7 @@ export default function AddSchedule() {
       headers: { Authorization: "Bearer " + token },
     };
     axios
-      .get("http://localhost:5256/api/Flight", httpHeader)
+      .get("http://localhost:13304/api/Flight", httpHeader)
       .then(function (response) {
         setFlights(response.data);
         console.log(response.data);
@@ -65,7 +65,7 @@ export default function AddSchedule() {
       DestinationAirportId: parseInt(destinationAirport),
     });
     fetch(
-      `http://localhost:5256/api/Route/GetRouteId?${params.toString()}`,
+      `http://localhost:13304/api/Route/GetRouteId?${params.toString()}`,
       requestOptions
     )
       .then((res) => res.json())
@@ -81,7 +81,7 @@ export default function AddSchedule() {
           },
           body: JSON.stringify(addScheduleDetails),
         };
-        fetch("http://localhost:5256/api/Schedule", RequestOptions)
+        fetch("http://localhost:13304/api/Schedule", RequestOptions)
           .then((res) => res.json())
           .then((res) => {
             console.log("Response:", res);
@@ -98,7 +98,7 @@ export default function AddSchedule() {
   };
 
   useState(() => {
-    fetch("http://localhost:5256/api/Route/GetAirports")
+    fetch("http://localhost:13304/api/Route/GetAirports")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);

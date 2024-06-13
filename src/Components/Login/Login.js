@@ -28,7 +28,7 @@ export default function Login() {
       body: JSON.stringify(user),
     };
 
-    fetch("http://localhost:5256/api/User/Login", requestOptions)
+    fetch("http://localhost:13304/api/User/Login", requestOptions)
       .then((res) => res.json())
       .then((res) => {
         sessionStorage.setItem("token", res.token);
@@ -47,7 +47,7 @@ export default function Login() {
           });
 
           fetch(
-            `http://localhost:5256/api/FlightOwner?${params.toString()}`,
+            `http://localhost:13304/api/FlightOwner?${params.toString()}`,
             getRequestOptions
           )
             .then((response) => response.json())
@@ -69,7 +69,7 @@ export default function Login() {
           });
 
           fetch(
-            `http://localhost:5256/api/users/GetCustomerByUsername?${params.toString()}`,
+            `http://localhost:13304/api/users/GetCustomerByUsername?${params.toString()}`,
             getRequestOptions
           )
             .then((response) => response.json())
@@ -90,7 +90,7 @@ export default function Login() {
           });
 
           fetch(
-            `http://localhost:5256/api/admin/dashboard/GetAdminByUsername?${params.toString()}`,
+            `http://localhost:13304/api/admin/dashboard/GetAdminByUsername?${params.toString()}`,
             getRequestOptions
           )
             .then((response) => response.json())

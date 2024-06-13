@@ -26,7 +26,7 @@ export default function AddRoute() {
       },
       body : JSON.stringify(routeDetail)
     }
-    fetch("http://localhost:5256/api/Route/AddRoute",RequestOption)
+    fetch("http://localhost:13304/api/Route/AddRoute",RequestOption)
     .then(res => res.json())
     .then(res => {
       console.log('Response:', res);
@@ -40,7 +40,7 @@ export default function AddRoute() {
   };
 
   useState(() => {
-    fetch("http://localhost:5256/api/Route/GetAirports")
+    fetch("http://localhost:13304/api/Route/GetAirports")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);

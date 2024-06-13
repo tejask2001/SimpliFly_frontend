@@ -7,7 +7,7 @@ export default function CancelledBooking() {
     const token = sessionStorage.getItem("token");
 
     useEffect(()=>{
-        fetch(`http://localhost:5256/api/Bookings/GetCancelledBookingByUserId`)
+        fetch(`http://localhost:13304/api/Bookings/GetCancelledBookingByUserId`)
         .then((res)=>res.json())
         .then((res)=>{
             setCancelledBooking(res);

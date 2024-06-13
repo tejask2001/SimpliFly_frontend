@@ -21,7 +21,7 @@ export default function GetFlight() {
       headers:{'Authorization':'Bearer '+token}
   }
     axios
-      .get("http://localhost:5256/api/Flight",httpHeader)
+      .get("http://localhost:13304/api/Flight",httpHeader)
       .then(function (response) {
         setFlights(response.data);
         console.log(response.data);

@@ -1,9 +1,13 @@
 import './Navbar.css'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import plane from '../../Assets/Images/airplane.png'
 
 function Navbar(){
     var isLoggedIn=sessionStorage.getItem("token")
     var navigate=useNavigate()
+
+    const location=useLocation();
+    const currentPath=location.pathname;
 
     function navMenu(){
         var navbar=document.getElementById("navbar-main")
@@ -54,7 +58,7 @@ function Navbar(){
         <nav className="navbar bg-custom fixed-top" id="navbar-main">
         <div className="container-fluid">          
           <a className="navbar-brand logo">Simplyfly
-            <img src="https://freepngimg.com/thumb/airplane/128541-flying-airplane-vector-free-transparent-image-hd.png" className="airplane-icon"/>
+            <img src={plane} className="airplane-icon"/>
           </a>
           <ul className="navbar-nav nav-links">
             <li className="nav-item">

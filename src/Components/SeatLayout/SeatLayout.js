@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SeatLayout.css";
 import { useSelector } from "react-redux";
+import seatLayoutImg from '../../Assets/Images/planelayout.png'
 import BookingDetails from "../BookingDetails/BookingDetails";
 
 export default function SeatLayout() {
@@ -40,7 +41,7 @@ export default function SeatLayout() {
   }, [selectedSeatNumbers]);
 
   useEffect(() => {
-    fetch("http://localhost:5256/api/SeatDetail")
+    fetch("http://localhost:13304/api/SeatDetail")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
@@ -58,7 +59,7 @@ export default function SeatLayout() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5256/api/Bookings/GetBookedSeats?${params.toString()}`
+      `http://localhost:13304/api/Bookings/GetBookedSeats?${params.toString()}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -113,7 +114,7 @@ export default function SeatLayout() {
       body: JSON.stringify(bookingDetails),
     };
 
-    fetch(`http://localhost:5256/api/users/${userId}/bookings`, RequestOption)
+    fetch(`http://localhost:13304/api/users/${userId}/bookings`, RequestOption)
       .then((res) => res.json())
       .then((res) => {
         console.log("Response:", res);
@@ -136,6 +137,8 @@ export default function SeatLayout() {
       </div>
       <div className="seat-layout-div">
         <div className="seat-selection">
+          
+        <img src={seatLayoutImg}  className="seat-layout-img"/>
           <div className="seat-arrangement">
             {seats.map((seat, index) => (
               <div
@@ -153,7 +156,6 @@ export default function SeatLayout() {
               </div>
             ))}
           </div>
-          <div className="passage"></div>
         </div>
         <button onClick={Payments} className="pay-btn">
           Make Payment
@@ -173,6 +175,7 @@ export default function SeatLayout() {
                 id="cardNumber"
                 required
                 value={cardNumber}
+                maxLength="16"
                 onChange={handleCardNumberChange}
               />
             </div>
@@ -195,9 +198,10 @@ export default function SeatLayout() {
                 CVV
               </label>
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="cvv"
+                maxLength="3"
                 value={cvv}
                 onChange={handleCvvChange}
                 required
@@ -211,6 +215,11 @@ export default function SeatLayout() {
             >
               Book Flight
             </button>
+            <div>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Rupay-Logo.png" className="payment-brand upi-logo"/>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" className="payment-brand2 upi-logo"/>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXTTg3fhRNSNZAa3RF9WYiTZwHMeYYh-RdNRDczP08-GY3Q6Z__m133SN2akRH8S8vp6Q&usqp=CAU" className="payment-brand3 upi-logo"/>
+            </div>
           </div>
         </div>
       )}

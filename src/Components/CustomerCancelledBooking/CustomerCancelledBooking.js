@@ -8,7 +8,7 @@ export default function CustomerCancelledBooking() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5256/api/users/GetCancelledBookingByUserId?userId=${userId}`
+      `http://localhost:13304/api/users/GetCancelledBookingByUserId?userId=${userId}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -34,7 +34,7 @@ export default function CustomerCancelledBooking() {
     };
 
     fetch(
-      `http://localhost:5256/api/Bookings/ChangeRefundStatus?id=${id}`,
+      `http://localhost:13304/api/Bookings/ChangeRefundStatus?id=${id}`,
       RequestOption
     )
       .then((res) => res.json())

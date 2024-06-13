@@ -4,6 +4,8 @@ import indigo from "../../Assets/Images/indigo.png";
 import airIndia from "../../Assets/Images/airindia.png";
 import vistara from "../../Assets/Images/vistara.png";
 import axios from "axios";
+import jsPDF from "jspdf";
+import JsBarcode from "jsbarcode";
 
 export default function CustomerBooking() {
   var [bookings, setBookings] = useState([]);
@@ -19,7 +21,7 @@ export default function CustomerBooking() {
     };
     axios
       .get(
-        `http://localhost:5256/api/users/GetBookingByCustomerId?customerId=${userId}`,
+        `http://localhost:13304/api/users/GetBookingByCustomerId?customerId=${userId}`,
         httpHeader
       )
       .then(function (response) {
@@ -39,7 +41,7 @@ export default function CustomerBooking() {
 
   useState(() => {
     fetch(
-      `http://localhost:5256/api/users/GetPassengerBookingByCustomerId?customerId=${userId}`
+      `http://localhost:13304/api/users/GetPassengerBookingByCustomerId?customerId=${userId}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -113,7 +115,7 @@ export default function CustomerBooking() {
       };
 
       fetch(
-        `http://localhost:5256/api/users/CancelBookingByPassenger?passengerId=${passengerBookingId}`,
+        `http://localhost:13304/api/users/CancelBookingByPassenger?passengerId=${passengerBookingId}`,
         RequestOption
       )
         .then((res) => res.json())
@@ -144,7 +146,7 @@ export default function CustomerBooking() {
       };
 
       fetch(
-        `http://localhost:5256/api/Bookings/CancelBooking?bookingId=${bookingId}`,
+        `http://localhost:13304/api/Bookings/CancelBooking?bookingId=${bookingId}`,
         RequestOption
       )
         .then((res) => res.json())
@@ -172,6 +174,65 @@ export default function CustomerBooking() {
         return indigo;
     }
   };
+
+  const downloadTicket = (booking) => {
+    const doc = new jsPDF();
+    
+    // Set background color
+    doc.setFillColor(244,229,215,255); // White background
+
+    doc.addImage('https://th.bing.com/th/id/OIP.Tf9EZ4MolP16U--kX_h-swHaLH?rs=1&pid=ImgDetMain', 'JPEG', 0, 0, 210, 297);
+    
+    // Ticket header
+   
+    doc.setFontSize(20);
+    doc.setTextColor(0); // Black text color
+    doc.text("Boarding Pass", 100, 25, null, null, 'center');
+    
+    // Airline and flight details
+    doc.setFontSize(12);
+    doc.text(`Airline: ${booking.booking.schedule.flight.airline}`, 20, 55); // Position airline name before image
+    const airlineImage = getAirlineImage(booking.booking.schedule.flight.airline);
+    doc.addImage(airlineImage, 'PNG', 55, 46, 15, 15); // Add airline image
+    doc.text(`Flight Number: ${booking.booking.schedule.flightNumber}`, 20, 65);
+    doc.text(`From: ${booking.booking.schedule.route.sourceAirport.city}`, 20, 75);
+    doc.text(`To: ${booking.booking.schedule.route.destinationAirport.city}`, 20, 85);
+    doc.text(`Departure: ${getDate(new Date(booking.booking.schedule.departure)).formattedDate} ${getDate(new Date(booking.booking.schedule.departure)).formattedTime}`, 20, 95);
+    doc.text(`Arrival: ${getDate(new Date(booking.booking.schedule.arrival)).formattedDate} ${getDate(new Date(booking.booking.schedule.arrival)).formattedTime}`, 20, 105);
+    doc.text(`Gate: ${Math.floor(Math.random() * 10)}`, 20, 115); // Random gate number
+    doc.text(`Seat: ${booking.seatDetail.seatNumber} (${booking.seatDetail.seatClass})`, 20, 125);
+    
+    // Passenger details
+    doc.text(`Passenger: ${booking.passenger.name}`, 100, 55);
+    doc.text(`Age: ${booking.passenger.age}`, 100, 65);
+    
+    const barcodeValue = `${booking.booking.schedule.flightNumber}${booking.booking.bookingTime}`;
+    const canvas = document.createElement('canvas');
+    JsBarcode(canvas, barcodeValue, {
+      format: 'CODE128',
+      displayValue: false,
+      margin: 0,
+      width: 1,
+      height: 40
+    });
+  
+    // Add barcode image to PDF
+    const barcodeDataURL = canvas.toDataURL('image/jpeg');
+    doc.addImage(barcodeDataURL, 'JPEG', 120, 85, 70, 30);
+    
+    // Boarding pass details
+    doc.setFontSize(8);
+    doc.text("This is your boarding pass. Please keep it safe and handy during your journey.", 100, 145, null, null, 'center');
+    
+    // Footer
+    doc.setLineWidth(0.5);
+    doc.line(10, 150, 200, 150);
+    doc.setFontSize(10);
+    doc.text("Thank you for flying with us!", 100, 155, null, null, 'center');
+    
+    doc.save('boarding-pass.pdf');
+  };
+
 
   return (
     <div className="bookings-div">
@@ -231,6 +292,7 @@ export default function CustomerBooking() {
                     <b>Passenger {index + 1} :</b> {booking.passenger.name} &nbsp; &nbsp;
                     <b>Seat No. :</b> {booking.seatDetail.seatNumber}
                     <br />
+            <button onClick={()=>downloadTicket(booking)} className="download-btn">Download</button>
                   </div>
                 ))}
               </div>
@@ -239,7 +301,6 @@ export default function CustomerBooking() {
                 <b>{getDate(new Date(booking.bookingTime)).formattedDate}</b>
               </div>
             </div>
-
             <div
               className="cancel-ticket-container"
               id={"cancel-container" + index}
@@ -315,9 +376,11 @@ export default function CustomerBooking() {
                     <b>
                       {getDate(new Date(booking.bookingTime)).formattedDate}
                     </b>
+                    
                   </div>
                 </div>
                 <button className="cancel-booking-btn" onClick={()=>CancelBooking(booking.id)}>Cancel Booking</button>
+                
               </div>
             </div>
           </div>

@@ -24,7 +24,7 @@ export default function Profile() {
     if (userRole == "flightOwner") {
         setIsFlightOwner(true)
       fetch(
-        `http://localhost:5256/api/FlightOwner?username=${sessionStorage.getItem(
+        `http://localhost:13304/api/FlightOwner?username=${sessionStorage.getItem(
           "username"
         )}`
       )
@@ -42,7 +42,7 @@ export default function Profile() {
     } else if (userRole == "customer") {
         setIsCustomer(true)
       fetch(
-        `http://localhost:5256/api/users/GetCustomerByUsername?username=${sessionStorage.getItem(
+        `http://localhost:13304/api/users/GetCustomerByUsername?username=${sessionStorage.getItem(
           "username"
         )}`
       )
@@ -57,7 +57,7 @@ export default function Profile() {
     } else {
         setIsAdmin(true)
       fetch(
-        `http://localhost:5256/api/admin/dashboard/GetAdminByUsername?username=${sessionStorage.getItem(
+        `http://localhost:13304/api/admin/dashboard/GetAdminByUsername?username=${sessionStorage.getItem(
           "username"
         )}`
       )
@@ -94,7 +94,7 @@ console.log(flightOwner);
             body : JSON.stringify(flightOwner)
         }
 
-        fetch("http://localhost:5256/api/FlightOwner",RequestOption)
+        fetch("http://localhost:13304/api/FlightOwner",RequestOption)
             .then(res=>res.json())
             .then(res=>{
                 console.log(res);
@@ -122,7 +122,7 @@ var RequestOption={
     body : JSON.stringify(customer)
 }
 
-fetch("http://localhost:5256/api/users/UpdateUser",RequestOption)
+fetch("http://localhost:13304/api/users/UpdateUser",RequestOption)
     .then(res=>res.json())
     .then(res=>{
         console.log(res);
@@ -151,7 +151,7 @@ var RequestOption={
     body : JSON.stringify(admin)
 }
 
-fetch("http://localhost:5256/api/admin/dashboard",RequestOption)
+fetch("http://localhost:13304/api/admin/dashboard",RequestOption)
     .then(res=>res.json())
     .then(res=>{
         console.log(res);
@@ -171,6 +171,7 @@ fetch("http://localhost:5256/api/admin/dashboard",RequestOption)
           <div className="col-md-6">
             <div className="profile-content">
               <form className="update-form">
+                <div className="user-img-div"><img src="https://th.bing.com/th/id/OIP.AbGafkazjc_S1pZPh0B9cQHaIm?rs=1&pid=ImgDetMain" className="user-image"/></div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     Name

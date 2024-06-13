@@ -16,7 +16,7 @@ export default function GetBookingHistory() {
     };
     axios
       .get(
-        "http://localhost:5256/api/admin/dashboard/Bookings/Allbookings",
+        "http://localhost:13304/api/admin/dashboard/Bookings/Allbookings",
         httpHeader
       )
       .then(function (response) {        
@@ -38,7 +38,7 @@ export default function GetBookingHistory() {
     };
     axios
       .get(
-        "http://localhost:5256/api/admin/dashboard/Users/AllCustomers",
+        "http://localhost:13304/api/admin/dashboard/Users/AllCustomers",
         httpHeader
       )
       .then(function (response) {
@@ -81,7 +81,7 @@ export default function GetBookingHistory() {
       headers : {'Content-Type':'Application/json',
       'Authorization':'Bearer '+token},
     }
-    fetch(`http://localhost:5256/api/users/${userId}/bookings/${bookingId}`,RequestOptions)
+    fetch(`http://localhost:13304/api/users/${userId}/bookings/${bookingId}`,RequestOptions)
       .then(res=>res.json)
       .then(alert("Booking deleted successfully"))
       .catch((err)=>{

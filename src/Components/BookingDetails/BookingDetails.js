@@ -117,7 +117,7 @@ export default function BookingDetails() {
         body: JSON.stringify(passenger),
       };
 
-      return fetch("http://localhost:5256/api/Passenger", requestOptions)
+      return fetch("http://localhost:13304/api/Passenger", requestOptions)
         .then((res) => res.json())
         .then((res) => {
           console.log("Response:", res);

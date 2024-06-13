@@ -30,7 +30,7 @@ export default function UpdatePassword() {
         headers : {'Content-Type':'application/json'},
         body: JSON.stringify(userDetails)
     }
-    fetch("http://localhost:5256/api/User/UpdatePassword",RequestOption)
+    fetch("http://localhost:13304/api/User/UpdatePassword",RequestOption)
     .then(res=>res.json)
     .then((res)=>{
       alert("Password updated successfully")

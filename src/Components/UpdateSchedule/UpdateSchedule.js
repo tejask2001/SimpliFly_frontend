@@ -42,7 +42,7 @@ export default function UpdateSchedule() {
       headers: { Authorization: "Bearer " + token },
     };
     axios
-      .get("http://localhost:5256/api/Flight", httpHeader)
+      .get("http://localhost:13304/api/Flight", httpHeader)
       .then(function (response) {
         setFlights(response.data);
         console.log(response.data);
@@ -57,7 +57,7 @@ export default function UpdateSchedule() {
     const httpHeader={
       headers:{'Authorization':'Bearer '+token}
   }
-      axios.get("http://localhost:5256/api/Schedule",httpHeader)
+      axios.get("http://localhost:13304/api/Schedule",httpHeader)
                 .then(function(response){
                     setSchedules(response.data)
                 })

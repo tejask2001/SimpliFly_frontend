@@ -6,12 +6,14 @@ import rightArrow from '../../Assets/Images/right-arrow.png'
 import leftArrow from '../../Assets/Images/left-arrow.png'
 import CustomerBookingHistory from "../CustomerBookings/CustomerBookingHistory";
 import CustomerCancelledBooking from "../CustomerCancelledBooking/CustomerCancelledBooking";
+import Contact from "../Contact/Contact";
 
 export default function UserAccount() {
   var [profile, setProfile] = useState(true);
   var [bookings, setBookings] = useState(false);
   var [bookingsHistory, setBookingHistory] = useState(false);
   var [cancelledBooking, setCancelledBooking] = useState(false);
+  var [contact,setContact]=useState(false);
   var userRole = sessionStorage.getItem("role");
 
   var [isCustomer, setIsCustomer] = useState(userRole=="customer");
@@ -42,6 +44,7 @@ export default function UserAccount() {
                 setBookings(false);
                 setBookingHistory(false);
                 setCancelledBooking(false);
+                setContact(false)
               }}
             >
               Profile
@@ -54,6 +57,7 @@ export default function UserAccount() {
                 setBookings(true);
                 setBookingHistory(false);
                 setCancelledBooking(false);
+                setContact(false)
               }}
             >
               Bookings
@@ -65,6 +69,7 @@ export default function UserAccount() {
                 setBookings(false);
                 setBookingHistory(true);
                 setCancelledBooking(false);
+                setContact(false)
               }}
             >
               Bookings History
@@ -76,6 +81,7 @@ export default function UserAccount() {
                 setBookings(false);
                 setBookingHistory(false);
                 setCancelledBooking(true);
+                setContact(false)
               }}
             >
               Cancelled Booking
@@ -91,7 +97,7 @@ export default function UserAccount() {
           )}
           {bookings && <div className="get-bookings"><CustomerBooking/></div>}
           {bookingsHistory && <div className="get-bookings-history"><CustomerBookingHistory/></div>}
-          {cancelledBooking && <div className="get-cancelled-booking"><CustomerCancelledBooking/></div>}
+          {cancelledBooking && <div className="get-cancelled-booking"><CustomerCancelledBooking/></div>}  
         </div>
       </div>
     </div>

@@ -34,26 +34,30 @@
     justify-content: space-evenly;
     align-items: center;
 }
+.seat-layout-img{
+  position: absolute;
+  z-index: -1;
+  width: 45%;
+  height: 110%;
+}
 .seat-selection{
-    height: 90%;
-    width: 28%;
-    border-radius: 10%;
+    height: 75%;
+    width: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 42%;
-    box-shadow: 2px 2px 14px rgb(70, 63, 63);
 }
 .seat-arrangement{
     display: grid;
     grid-template-columns: repeat(6, 1fr); 
     grid-template-rows: repeat(8, 10%);
     grid-gap: 2px; 
-    width: 90%;
+    width: 64%;
     height: 90%;
     padding: 8px;
     margin: 10px;
-    margin-left: 5px;
+    margin-left: 20px;
     
 }
 #seats{
@@ -65,13 +69,8 @@
     align-items: center;
     border-radius: 8px;
     justify-content: center;
-}
-.passage{
-    height: 90%;
-    width: 1%;
-    background-color: rgb(1, 91, 130);
-    position: absolute;
-    left: 41.2%;
+    font-size: 12px;
+    font-weight: bold;
 }
 .booked {
     background-color: red; 
@@ -124,6 +123,18 @@
     box-shadow: 2px 2px 8px rgb(145, 143, 143);
     color: white;
     font-weight: bold;
+}
+.payment-brand{
+  height: 80px;
+}
+.payment-brand2{
+  height: 20px;
+}
+.payment-brand3{
+  height: 60px;
+}
+.upi-logo{
+margin: 14px;
 }
 
 @media (max-width: 900px) {

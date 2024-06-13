@@ -19,7 +19,7 @@ export default function CustomerBookingHistory() {
     };
     axios
       .get(
-        `http://localhost:5256/api/users/GetBookingByCustomerId?customerId=${userId}`,
+        `http://localhost:13304/api/users/GetBookingByCustomerId?customerId=${userId}`,
         httpHeader
       )
       .then(function (response) {  
@@ -34,7 +34,7 @@ export default function CustomerBookingHistory() {
   }, []);
 
   useState(() => {
-    fetch(`http://localhost:5256/api/users/GetPassengerBookingByCustomerId?customerId=${userId}`)
+    fetch(`http://localhost:13304/api/users/GetPassengerBookingByCustomerId?customerId=${userId}`)
       .then((res) => res.json())
       .then((res) => {
         console.log(res);        

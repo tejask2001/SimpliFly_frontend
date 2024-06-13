@@ -16,7 +16,7 @@ export default function GetBookings() {
     };
     axios
       .get(
-        "http://localhost:5256/api/admin/dashboard/Bookings/Allbookings",
+        "http://localhost:13304/api/admin/dashboard/Bookings/Allbookings",
         httpHeader
       )
       .then(function (response) {  
@@ -38,7 +38,7 @@ export default function GetBookings() {
     };
     axios
       .get(
-        "http://localhost:5256/api/admin/dashboard/Users/AllCustomers",
+        "http://localhost:13304/api/admin/dashboard/Users/AllCustomers",
         httpHeader
       )
       .then(function (response) {
@@ -91,7 +91,7 @@ export default function GetBookings() {
       };
 
       fetch(
-        `http://localhost:5256/api/Bookings/CancelBooking?bookingId=${bookingId}`,
+        `http://localhost:13304/api/Bookings/CancelBooking?bookingId=${bookingId}`,
         RequestOption
       )
         .then((res) => res.json())

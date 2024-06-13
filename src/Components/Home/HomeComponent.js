@@ -73,7 +73,7 @@ export default function HomeComponent() {
       SeatClass:searchFlightDetails.SeatClass
     });
 
-    fetch(`http://localhost:5256/api/Flight/SearchFlight?${params.toString()}`, requestOptions)
+    fetch(`http://localhost:13304/api/Flight/SearchFlight?${params.toString()}`, requestOptions)
       .then(res => res.json())
       .then(res => {
           console.log(res);
@@ -97,7 +97,7 @@ export default function HomeComponent() {
     };
 
     useState(() => {
-      fetch("http://localhost:5256/api/Route/GetAirports")
+      fetch("http://localhost:13304/api/Route/GetAirports")
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
@@ -111,6 +111,7 @@ export default function HomeComponent() {
         <img
           src="https://preview.redd.it/v303fhu204681.jpg?auto=webp&s=49d7184fe29ac0bb0f5e6e14c5b41814e4e237e3"
           className="background-img"
+          id="background-home"
         />
         <div className="home-left">
           <a className="navbar-brand" href="#">
@@ -123,7 +124,7 @@ export default function HomeComponent() {
           </a>
           <div className="booking-cta">
             <h1 className="msg">Book your flight today</h1>
-            <p className="more-msg">Get your tickets at the lowest price !!!</p>
+            <p className="more-msg">Get your tickets at the lowest price !!</p>
           </div>
         </div>
         <div className="flight-search-container">

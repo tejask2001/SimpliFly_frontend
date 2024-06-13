@@ -32,7 +32,7 @@ export default function AddFlight() {
       },
       body : JSON.stringify(flightDetails)
     }
-    fetch("http://localhost:5256/api/Flight/AddFlight",RequestOption)
+    fetch("http://localhost:13304/api/Flight/AddFlight",RequestOption)
     .then(res => res.json())
     .then(res => {
       console.log('Response:', res);

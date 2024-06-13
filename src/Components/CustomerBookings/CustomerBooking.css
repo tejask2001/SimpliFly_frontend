@@ -8,6 +8,15 @@
     padding: 6px;
     margin: 5px;
 }
+.download-btn{
+    width: 50%;
+    border-radius: 5px;
+    background-color: rgb(158, 210, 252);
+}
+.download-btn:hover{
+    background-color: rgb(89, 118, 139);
+    color: white;
+}
 .booking-schedule-details{
 width: 100%;
     display: flex;

@@ -42,7 +42,7 @@ var RequestOption ={
     body : JSON.stringify(user)
   }
 
-  fetch("http://localhost:5256/api/User",RequestOption)
+  fetch("http://localhost:13304/api/User",RequestOption)
       .then(res=>res.json())
       .then(res=>{
         console.log(res)

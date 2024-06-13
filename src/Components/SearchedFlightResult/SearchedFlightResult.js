@@ -22,7 +22,7 @@ export default function SearchedFlightResult() {
   var [airports, setAirports] = useState([]);
 
   useState(() => {
-    fetch("http://localhost:5256/api/Route/GetAirports")
+    fetch("http://localhost:13304/api/Route/GetAirports")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
@@ -72,7 +72,7 @@ export default function SearchedFlightResult() {
       SeatClass:searchFlightDetails.SeatClass
     });
 
-    fetch(`http://localhost:5256/api/Flight/SearchFlight?${params.toString()}`, requestOptions)
+    fetch(`http://localhost:13304/api/Flight/SearchFlight?${params.toString()}`, requestOptions)
       .then(res => res.json())
       .then(res => {
           console.log(res);

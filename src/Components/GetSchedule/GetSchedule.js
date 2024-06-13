@@ -20,7 +20,7 @@ export default function GetSchedule() {
       const httpHeader={
         headers:{'Authorization':'Bearer '+token}
     }
-        axios.get("http://localhost:5256/api/Schedule",httpHeader)
+        axios.get("http://localhost:13304/api/Schedule",httpHeader)
                   .then(function(response){
                       setSchedules(response.data)
                   })

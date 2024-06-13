@@ -29,7 +29,7 @@ export default function UpdateFlight() {
       headers:{'Authorization':'Bearer '+token}
   }
     axios
-      .get("http://localhost:5256/api/Flight",httpHeader)
+      .get("http://localhost:13304/api/Flight",httpHeader)
       .then(function (response) {
         setFlights(response.data);
         console.log(response.data);
@@ -61,7 +61,7 @@ export default function UpdateFlight() {
             body : JSON.stringify(updateAirlineDetail)
         }
 
-        fetch("http://localhost:5256/api/Flight",RequestOption)
+        fetch("http://localhost:13304/api/Flight",RequestOption)
             .then(res=>res.json())
             .then(res=>{
                 console.log(res);
@@ -91,7 +91,7 @@ export default function UpdateFlight() {
         }
 
 
-        fetch("http://localhost:5256/api/Flight/UpdateTotalSeats",RequestOption)
+        fetch("http://localhost:13304/api/Flight/UpdateTotalSeats",RequestOption)
             .then(res=>res.json())
             .then(res=>{
                 console.log(res);
