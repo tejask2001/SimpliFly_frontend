@@ -25,6 +25,7 @@ import UserAccount from "./Components/UserAccount/UserAccount";
 import CustomerBooking from "./Components/CustomerBookings/CustomerBooking";
 import ManageBooking from "./Components/ManageBookings/ManageBooking";
 import UpdatePassword from "./Components/UpdatePassword/UpdatePassword";
+import Feedback from "./Components/Feedback/Feedback";
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
           <Route path="registerUser" element={<RegisterUser/>}/>
           <Route path="registerAdmin" element={<RegisterAdmin/>}/>
           <Route path="register" element={<RegisterFlightOwner />} />
+          
+          <Route path="feedback" element={<Feedback/>}/>
+          
           <Route path="navMenu" element={<NavMenu />} />
           <Route path="searchFlightResult" element={<SearchedFlightResult />} />
           <Route path="user/" element={<PrivateRoute/>}>

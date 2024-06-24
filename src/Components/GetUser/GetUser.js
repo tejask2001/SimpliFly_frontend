@@ -11,7 +11,7 @@ export default function GetUser() {
           headers:{'Authorization':'Bearer '+token}
       }
 
-        fetch("http://localhost:5256/api/admin/dashboard/Users/AllCustomers",httpHeader)
+        fetch("http://localhost:13304/api/admin/dashboard/Users/AllCustomers",httpHeader)
           .then((res) => res.json())
           .then((res) => {
             console.log(res);
@@ -29,7 +29,7 @@ export default function GetUser() {
             'Authorization':'Bearer '+token},
           };
   
-          fetch(`http://localhost:5256/api/admin/dashboard/DeleteUserByUsername?username=${username}`,RequestOptions)
+          fetch(`http://localhost:13304/api/admin/dashboard/DeleteUserByUsername?username=${username}`,RequestOptions)
           .then((res)=>res.json)
           .then((res)=>{console.log(res)})
           .catch((err) => {

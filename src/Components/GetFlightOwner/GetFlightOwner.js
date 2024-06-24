@@ -12,7 +12,7 @@ export default function GetFlightOwner() {
           headers:{'Authorization':'Bearer '+token}
       }
 
-        fetch("http://localhost:5256/api/admin/dashboard/Users/AllFlightOwners",httpHeader)
+        fetch("http://localhost:13304/api/admin/dashboard/Users/AllFlightOwners",httpHeader)
           .then((res) => res.json())
           .then((res) => {
             console.log(res);
@@ -30,7 +30,7 @@ export default function GetFlightOwner() {
             'Authorization':'Bearer '+token},
           };
   
-          fetch(`http://localhost:5256/api/admin/dashboard/DeleteUserByUsername?username=${username}`,RequestOptions)
+          fetch(`http://localhost:13304/api/admin/dashboard/DeleteUserByUsername?username=${username}`,RequestOptions)
           .then((res)=>res.json)
           .then((res)=>{console.log(res)})
           .catch((err) => {

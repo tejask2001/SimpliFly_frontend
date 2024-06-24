@@ -60,7 +60,7 @@ export default function UserAccount() {
                 setContact(false)
               }}
             >
-              Bookings
+              My Bookings
             </div>}
             {isCustomer && <div
               className="sidebar-option booking-history-btn"

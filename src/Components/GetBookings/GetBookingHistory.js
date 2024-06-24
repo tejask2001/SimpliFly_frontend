@@ -10,6 +10,11 @@ export default function GetBookingHistory() {
   var userId = sessionStorage.getItem("userId");
   const token = sessionStorage.getItem("token");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  var [showFlight, setShowFlight] = useState(false)
+  const [currFlight, setCurrFlight] = useState({})
+  const flightsPerPage = 5;
+
   useEffect(() => {
     const httpHeader = {
       headers: { Authorization: "Bearer " + token },
@@ -103,10 +108,25 @@ export default function GetBookingHistory() {
     }
   };
 
+  function handleFlight(flight){
+    setShowFlight(true);
+    setCurrFlight(flight)
+ }
+
+ function handleBack(){
+   setShowFlight(false)
+}
+
+ const indexOfLastFlight = currentPage * flightsPerPage;
+ const indexOfFirstFlight = indexOfLastFlight - flightsPerPage;
+ const currentFlights = bookings.slice(indexOfFirstFlight, indexOfLastFlight);
+
+ const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="bookings-div">
       <div className="get-bookings-div">
-        {bookings.map((booking, index) => (
+        {currentFlights.map((booking, index) => (
           <div key={index} className="booking-list-div">
             <div className="booking-schedule-details">
               <div className="booking-flight-detail">
@@ -158,6 +178,15 @@ export default function GetBookingHistory() {
             </div>
           </div>
         ))}
+         {!showFlight && <div className="pagination">
+            {bookings.length > flightsPerPage && (
+              <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+            )}
+            {bookings.length > indexOfLastFlight && (
+              <button onClick={() => paginate(currentPage + 1)}>Next</button>
+            )}
+          </div>
+      }
       </div>
     </div>
   );

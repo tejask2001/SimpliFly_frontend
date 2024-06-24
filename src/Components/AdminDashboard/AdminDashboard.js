@@ -10,19 +10,19 @@ export default function AdminDashboard() {
   return (
     <div>
        <div className="background-img" id="background-img">
-    <img src="https://images.pexels.com/photos/62623/wing-plane-flying-airplane-62623.jpeg?cs=srgb&dl=pexels-pixabay-62623.jpg&fm=jpg" className="sky-img"/>
+    <img src="https://th.bing.com/th/id/R.de415334320dd313b583016db0352e93?rik=iHHSrgXQCeK7Cg&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fNcdUsHW.jpg&ehk=84aqjyfivMaFvbNbc48qihAGay07WJUqdYjE1QfyZts%3d&risl=&pid=ImgRaw&r=0" className="sky-img"/>
     <h1>Hello {username}</h1>
   </div>
   <div className="fun-div" id="fun-div">
     <div className="child-div child-div-admin">
       <div className="owner-function" onClick={()=>navigate("/flightOwner/manageRoute")}>
-        <img src="https://cdn-icons-png.freepik.com/512/4283/4283136.png" className="fun-img"/>
+        <img src="https://th.bing.com/th/id/OIP._VuUhY9gcQL-verM9mptnQHaHa?rs=1&pid=ImgDetMain" className="fun-img"/>
         <h4>Manage Route</h4>
       </div>
     </div>
     <div className="child-div child-div-admin">
       <div className="owner-function" onClick={()=>navigate("/admin/manageUser")}>
-        <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" className="fun-img"/>
+        <img src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" className="fun-img"/>
         <h4>Manage Users</h4>
       </div>
     </div>

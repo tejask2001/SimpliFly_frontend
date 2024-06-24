@@ -74,6 +74,7 @@ export default function SeatLayout() {
     console.log(passengerIds);
   }
 
+  var [Email,setEmail]=useState()
   var [scheduleId, setScheduleId] = useState(selectedFlight.scheduleId);
   var [userId, setUserId] = useState(sessionStorage.getItem("userId"));
   var [bookingTime, seatBookingTime] = useState(Date.now);
@@ -117,13 +118,58 @@ export default function SeatLayout() {
     fetch(`http://localhost:13304/api/users/${userId}/bookings`, RequestOption)
       .then((res) => res.json())
       .then((res) => {
-        console.log("Response:", res);
+        console.log("Response:", res);        
+        SendEmail();
         alert("Booking added successfully");
       })
       .catch((err) => {
         console.error("Error:", err);
         alert("Error adding booking");
       });
+
+      var emailDetails={};
+      function SendEmail(){
+        fetch(`http://localhost:13304/api/users/GetCustomerById?userId=${userId}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setEmail(res.email)
+        console.log("Response:", res.email);
+        emailDetails.email=res.email;
+        emailDetails.subject="Congratulation, flight booking successful!! - SIMPLIFLY";
+        emailDetails.message=`Thanks for using Simplifly!\n`+
+        `\n`+
+        `Flight Number : ${selectedFlight.flightNumber}\n`+
+        `Airline : ${selectedFlight.airline}\n`+
+        `Departure : ${selectedFlight.sourceAirport}\n`+
+        `Arrival : ${selectedFlight.destinationAirport}\n`+
+        `\n`+
+        `You can download your ticket from Accounts > My Bookings > Download Ticket\n`+
+        "";
+
+      })
+      .then((res)=>{
+        console.log(JSON.stringify(emailDetails))
+
+        var RequestOptionEmail = {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(emailDetails),
+        };
+        fetch("http://localhost:13304/api/Email",RequestOptionEmail)
+        .then(console.log("email sent"))
+        .catch((err) => {
+          console.error("Error:", err);
+          alert("Error sending mail");
+        });
+
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+        alert("Error adding booking");
+      });
+      }
     
   }
   return (

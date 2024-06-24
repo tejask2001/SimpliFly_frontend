@@ -22,7 +22,7 @@ export default function DeleteSchedule() {
       headers: { Authorization: "Bearer " + token },
     };
     axios
-      .get("http://localhost:5256/api/Flight", httpHeader)
+      .get("http://localhost:13304/api/Flight", httpHeader)
       .then(function (response) {
         setFlights(response.data);
         console.log(response.data);
@@ -51,7 +51,7 @@ export default function DeleteSchedule() {
             },
           };
           fetch(
-            `http://localhost:5256/api/Schedule/DeleteScheduleByFlight?${params.toString()}`,
+            `http://localhost:13304/api/Schedule/DeleteScheduleByFlight?${params.toString()}`,
             RequestOption
           )
             .then((res) => res.json())
@@ -84,7 +84,7 @@ export default function DeleteSchedule() {
             body : JSON.stringify(deleteDateScheduleData)
           };
           fetch(
-            `http://localhost:5256/api/Schedule/DeleteScheduleByDate`,
+            `http://localhost:13304/api/Schedule/DeleteScheduleByDate`,
             RequestOption
           )
             .then((res) => res.json())
@@ -101,7 +101,7 @@ export default function DeleteSchedule() {
   };
 
   useState(() => {
-    fetch("http://localhost:5256/api/Route/GetAirports")
+    fetch("http://localhost:13304/api/Route/GetAirports")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);

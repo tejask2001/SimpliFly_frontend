@@ -24,7 +24,7 @@ export default function DeleteFlight() {
         headers:{'Authorization':'Bearer '+token}
     }
       axios
-        .get("http://localhost:5256/api/Flight",httpHeader)
+        .get("http://localhost:13304/api/Flight",httpHeader)
         .then(function (response) {
           setFlights(response.data);
           console.log(response.data);
@@ -56,7 +56,7 @@ export default function DeleteFlight() {
                 'Authorization':'Bearer '+token
               }
           }
-          fetch(`http://localhost:5256/api/Flight?${params.toString()}`,RequestOption)
+          fetch(`http://localhost:13304/api/Flight?${params.toString()}`,RequestOption)
               .then(res=>res.json())
               .then(res=>{
                   console.log(res);

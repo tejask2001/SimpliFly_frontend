@@ -41,6 +41,10 @@ export default function HomeComponent() {
       alert('Please fill in all required fields');
       return;
     }
+    if (Origin==Destination ){
+      alert('Source and Destination cannot be same.');
+      return;
+    }
 
     searchFlightDetails.dateOfJourney = dateOfJourney;
     searchFlightDetails.Origin = Origin;

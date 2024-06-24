@@ -22,12 +22,17 @@ export default function GetSchedule() {
     }
         axios.get("http://localhost:13304/api/Schedule",httpHeader)
                   .then(function(response){
+
+                    const sortBookings = response.data.sort(
+                      (a, b) => new Date(b.departure) - new Date(a.departure)
+                    );
                       setSchedules(response.data)
+                      console.log(response.data)
                   })
                   .catch(function(err){
                       console.log(err)
                   })
-    })
+    },[])
 
               const getAirlineImage = (airline) => {
                 airline = airline.toLowerCase();

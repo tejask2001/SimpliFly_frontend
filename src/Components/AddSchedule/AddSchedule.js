@@ -14,12 +14,14 @@ export default function AddSchedule() {
   var [arrivalTime, setArrivalTime] = useState();
   var [routeId, setRouteId] = useState();
   var [airports, setAirports] = useState([]);
+  var [routes, setRoutes] = useState([]);
   var addScheduleDetails = {};
 
   var [flights, setFlights] = useState([]);
 
+  const token = sessionStorage.getItem("token");
+
   useState(() => {
-    const token = sessionStorage.getItem("token");
     const httpHeader = {
       headers: { Authorization: "Bearer " + token },
     };
@@ -49,6 +51,7 @@ export default function AddSchedule() {
     addScheduleDetails.departure = departureTime;
     arrivalTime = new Date(arrivalTime).toISOString();
     addScheduleDetails.arrival = arrivalTime;
+    addScheduleDetails.routeId = routeId;
     console.log(addScheduleDetails);
 
     const token = sessionStorage.getItem("token");
@@ -57,45 +60,47 @@ export default function AddSchedule() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        'Authorization':'Bearer '+token
+        Authorization: "Bearer " + token,
       },
     };
-    const params = new URLSearchParams({
-      SourceAirportId: parseInt(sourceAirport),
-      DestinationAirportId: parseInt(destinationAirport),
-    });
-    fetch(
-      `http://localhost:13304/api/Route/GetRouteId?${params.toString()}`,
-      requestOptions
-    )
+
+    console.log("here");
+    var RequestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(addScheduleDetails),
+    };
+    fetch("http://localhost:13304/api/Schedule", RequestOptions)
       .then((res) => res.json())
       .then((res) => {
-        console.log("here")
-        addScheduleDetails.routeId = res;
-        console.log(addScheduleDetails);
-        var RequestOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          body: JSON.stringify(addScheduleDetails),
-        };
-        fetch("http://localhost:13304/api/Schedule", RequestOptions)
-          .then((res) => res.json())
-          .then((res) => {
-            console.log("Response:", res);
-            alert("Schedule added successfully");
-          })
-          .catch((err) => {
-            console.error("Error:", err);
-            alert("Error adding schedule.");
-          });
+        console.log("Response:", res);
+        alert("Schedule added successfully");
       })
       .catch((err) => {
-        alert("No route found for this cities, add route first.")
+        console.error("Error:", err);
+        alert("Error adding schedule.");
       });
   };
+
+  var requestOption = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  };
+  useState(() => {
+    fetch("http://localhost:13304/api/Route", requestOption)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setRoutes(res);
+        console.log(routes);
+      });
+  });
 
   useState(() => {
     fetch("http://localhost:13304/api/Route/GetAirports")
@@ -121,44 +126,40 @@ export default function AddSchedule() {
   const handleArrivalTimeChange = (e) => {
     setArrivalTime(e.target.value);
   };
-  
 
   return (
     <div className="add-schedule-div">
       <form className="add-schedule-form">
         <div className="source-airport-div">
           <label htmlFor="source-airport">
-            <b>Source Airport : </b>
+            <b>Routes </b>
           </label>
-          <select
+          {/* <select
             className="select-source-airport"
-            onChange={handleSourceAirportChange}
+            onChange={(e)=>setRouteId(e.target.value)}
           >
-            <option value="0">--Select airport--</option>
-            {airports.map((airport) => (
-              <option key={airport.id} value={airport.id}>
-                {airport.city}
+            <option value="0">--Select route--</option>
+            {routes.map((route) => (
+              <option key={route.id} value={route.id}  >
+                {route.sourceAirport.city} - {route.destinationAirport.city}
               </option>
             ))}
-          </select>
+          </select> */}
+          {routes.length > 0 && (
+            <select
+              className="select-source-airport"
+              onChange={(e) => setRouteId(e.target.value)}
+            >
+              <option value="0">--Select route--</option>
+              {routes.map((route) => (
+                <option key={route.id} value={route.id}>
+                  {route.sourceAirport.city} - {route.destinationAirport.city}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
 
-        <div className="destination-airport-div">
-          <label htmlFor="destination-airport">
-            <b>Destination Airport : </b>
-          </label>
-          <select
-            className="select-destination-airport"
-            onChange={handleDestinationAirportChange}
-          >
-            <option value="0">--Select airport--</option>
-            {airports.map((airport) => (
-              <option key={airport.id} value={airport.id}>
-                {airport.city}
-              </option>
-            ))}
-          </select>
-        </div>
         <div className="flight-number-div flight-detail-div">
           <label htmlFor="flight-number">
             <b>Flight Number : </b>

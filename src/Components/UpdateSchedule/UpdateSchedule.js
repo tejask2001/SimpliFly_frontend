@@ -59,6 +59,9 @@ export default function UpdateSchedule() {
   }
       axios.get("http://localhost:13304/api/Schedule",httpHeader)
                 .then(function(response){
+                  const sortBookings = response.data.sort(
+                    (a, b) => new Date(b.departure) - new Date(a.departure)
+                  );
                     setSchedules(response.data)
                 })
                 .catch(function(err){
@@ -107,7 +110,7 @@ export default function UpdateSchedule() {
       body : JSON.stringify(updateDetails)
     }
 
-    fetch("http://localhost:5256/api/Schedule/UpdateScheduledFlight",RequestOptions)
+    fetch("http://localhost:13304/api/Schedule/UpdateScheduledFlight",RequestOptions)
     .then(res=>res.json)
     .then(res=>{console.log(res)
     alert("Updated flight for the Schedule")})
@@ -132,7 +135,7 @@ export default function UpdateSchedule() {
       body : JSON.stringify(updateDetails)
     }
 
-    fetch("http://localhost:5256/api/Schedule/UpdateScheduledTime",RequestOptions)
+    fetch("http://localhost:13304/api/Schedule/UpdateScheduledTime",RequestOptions)
     .then(res=>res.json)
     .then(res=>{console.log(res)
     alert("Updated Time for the Schedule")})
