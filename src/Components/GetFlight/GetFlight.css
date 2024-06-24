@@ -92,6 +92,23 @@
     background-color: coral;
     font-weight: bold;
 }
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.previous-btn,.next-butn{
+    width: 20%;
+    margin: 10px;
+}
+.get-details-btn{
+    margin: 10px;
+    background-color: #ffffff;
+}
+.get-details-btn:hover{
+    background-color: #c2e0f5;
+}
 
 @media (max-width: 900px) {
     .flight-list-div{

@@ -105,7 +105,7 @@ var Register=(e)=>{
             <div className="contact-div">
                 <label htmlFor="contact">Contact : </label>
                 <input type='tel' id="contact-input" placeholder="Enter your contact" className="register-inputs"
-                value={phone} onChange={(e)=>setPhone(e.target.value)} required/>
+                value={phone} maxLength="10" onChange={(e)=>setPhone(e.target.value)} required/>
             </div>
             <div className="position-div">
                 <label htmlFor="position">Position : </label>

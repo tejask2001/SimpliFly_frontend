@@ -46,8 +46,10 @@ export default function AddSchedule() {
       return;
     }
     e.preventDefault();
-    addScheduleDetails.flightId = flightNumber;
+    addScheduleDetails.flightId = flightNumber;    
+    console.log(departureTime)
     departureTime = new Date(departureTime).toISOString();
+    console.log(departureTime)
     addScheduleDetails.departure = departureTime;
     arrivalTime = new Date(arrivalTime).toISOString();
     addScheduleDetails.arrival = arrivalTime;
@@ -120,10 +122,10 @@ export default function AddSchedule() {
   const handleDestinationAirportChange = (e) => {
     setDestinationAirport(e.target.value);
   };
-  const handleDepartureTimeChange = (e) => {
+  function handleDepartureTimeChange(e){
     setDepartureTime(e.target.value);
-  };
-  const handleArrivalTimeChange = (e) => {
+  }
+  function handleArrivalTimeChange (e){
     setArrivalTime(e.target.value);
   };
 
@@ -183,7 +185,7 @@ export default function AddSchedule() {
           <input
             type="datetime-local"
             value={departureTime}
-            onChange={handleDepartureTimeChange}
+            onChange={(e)=>setDepartureTime(e.target.value)}
             min={minDateTime}
           />
         </div>
@@ -195,7 +197,7 @@ export default function AddSchedule() {
           <input
             type="datetime-local"
             value={arrivalTime}
-            onChange={handleArrivalTimeChange}
+            onChange={(e)=>setArrivalTime(e.target.value)}
             min={minDateTime}
           />
         </div>

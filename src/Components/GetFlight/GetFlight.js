@@ -132,17 +132,17 @@ export default function GetFlight() {
                 </b>
               </div>
               <button onClick={() => ShowFlightDetail(flight)} className="get-details-btn">
-                get details
+                Get Details
               </button>
             </div>
           </div>
         ))}
          {!showFlight && <div className="pagination">
             {flights.length > flightsPerPage && (
-              <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+              <button onClick={() => paginate(currentPage - 1)} className="previous-btn">Previous</button>
             )}
             {flights.length > indexOfLastFlight && (
-              <button onClick={() => paginate(currentPage + 1)}>Next</button>
+              <button onClick={() => paginate(currentPage + 1)}  className="next-butn">Next</button>
             )}
           </div>
       }

@@ -1,6 +1,4 @@
-.get-User{
-    margin-left: 20%;
-}
+
 .get-bookings,.get-bookings-history,.get-cancelled-booking{
     width: 100%;
     display: flex;

@@ -257,7 +257,7 @@ export default function GetBookings() {
                   </div>
                   <div>
                     Booked By :{" "}
-                    <b>{GetUser(booking.customerId)}</b>
+                    <b>{GetUser(booking.userId)}</b>
                   </div>
                 </div>
               </div>
@@ -266,18 +266,18 @@ export default function GetBookings() {
 {role == "flightowner" ? (
                <div className='pagination'>
                {(currentBookings.length > bookingsPerPage && currentPage > 1) && (
-                 <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+                 <button onClick={() => paginate(currentPage - 1)} className="previous-btn">Previous</button>
                )}
                {currentBookings.length > indexOfLastBooking && (
-                 <button onClick={() => paginate(currentPage + 1)}>Next</button>
+                 <button onClick={() => paginate(currentPage + 1)} className="next-butn">Next</button>
                )}
              </div>
             ) : (<div className='pagination'>
             {(bookings.length > bookingsPerPage && currentPage > 1) && (
-              <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+              <button onClick={() => paginate(currentPage - 1)} className="previous-btn">Previous</button>
             )}
             {bookings.length > indexOfLastBooking && (
-              <button onClick={() => paginate(currentPage + 1)}>Next</button>
+              <button onClick={() => paginate(currentPage + 1)} className="next-butn">Next</button>
             )}
           </div>)}
       </div>
